@@ -1,0 +1,11 @@
+<advancedsettings>
+ 
+    <pvr> 
+	    <cacheindvdplayer>false</cacheindvdplayer> 
+	</pvr>
+	
+	<epg> 
+	    <lingertime>0</lingertime> 
+	</epg>
+	
+</advancedsettings>

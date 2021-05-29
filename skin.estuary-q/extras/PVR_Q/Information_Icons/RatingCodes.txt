@@ -1,0 +1,15 @@
+
+<description>------------------------Rating Codes----------------------------</description>
+
+
+These codes act as a guide to how suitable they are for children.
+
+U: Universal, suitable for all audiences, including young children.
+
+PG: Parental guidance is recommended. Parents may need to consider whether the movie is suitable for younger or impressionable children.
+
+12: Suitable for viewers aged 12 years or over. More mature themes or language may make the movie unsuitable for young children.
+
+15: Suitable for viewers aged 15 years or over. It may contain stronger content.
+
+18: Suitable only for adult viewers aged 18 or over.

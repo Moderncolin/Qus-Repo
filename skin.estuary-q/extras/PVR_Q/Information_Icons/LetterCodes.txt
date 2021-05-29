@@ -1,0 +1,25 @@
+
+<description>------------------------Letter Codes----------------------------</description>
+
+
+
+These codes describe what accessibility, picture and sound features are available for that show.
+
+AD: You can choose to turn on Audio Description for this show - this is an additional commentary for blind or partially sighted people.
+
+C: This show is copy protected and may not play back correctly if it's recorded.
+
+DS: You can hear this show in surround sound if you have a compatible TV or speaker system.
+
+HD: This is a high definition show.
+
+SD: This is a standard definition show.
+
+S: You can turn on subtitles for this show.
+
+SL: This show has sign language. Sign language shows are dedicated versions of the programme, so the signer can't be turned on or off.
+
+UHD: These shows are in Ultra HD.
+
+W: This show is shown in widescreen. For HD shows, this code won't be shown as all HD shows are shown in widescreen.
+

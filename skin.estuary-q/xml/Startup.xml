@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
+	
+	<onload>Skin.SetBool(TMDbHelper.Service)</onload>
+    <onload condition="!Skin.HasSetting(SkinHelper.EnablePVRThumbs)">Skin.SetBool(SkinHelper.EnablePVRThumbs)</onload>
+	<onload condition="!Skin.HasSetting(SkinInit)">Skin.SetString(weather.icons.path,resource://resource.images.weathericons.outline-hd/)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(SubmenuOnly)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetString(widgetPath,special://skin/extras/playlists/RandomMovies.xsp)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetString(widgetTarget,videos)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(SkinInit)</onload>
+	<!-- <controls /> -->
+</window>

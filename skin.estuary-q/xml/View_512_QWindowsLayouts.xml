@@ -1,0 +1,2492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<includes>
+<description>-----------------vV  Vv-----------------</description>
+    <include name="KodiQ-VerticalLiveTvLayout">
+	    <!-- <param name="focused">false</param> -->
+		<definition>			
+			<control type="group">
+				<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+<!--======================Kodi cinema posters for movies right side====================================-->
+				<control type="image">
+					<!--<left>0</left>
+					<top>0</top>-->
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>auto</aspectratio>
+					<!-- <texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture> -->					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>  
+					<bordertexture border="0" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</bordertexture>
+                    <bordersize>5</bordersize>					
+				</control>
+				<control type="image">
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<!-- <bordertexture border="0">overlays/shadow.png</bordertexture> -->
+					<bordersize>5</bordersize>
+				</control>
+<!--==========================================================-->
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>
+			</control>
+			
+			<!-- <control type="group">
+				<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
+				<control type="image">
+					<left>11</left>
+					<top>-14</top>
+					<width>298</width>
+					<height>408</height>
+					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>$PARAM[focused]</visible>
+					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
+				</control>
+				<control type="image">
+					<left>15</left>
+					<top>-10</top>
+					<width>290</width>
+					<height>400</height>
+					<texture background="true">$INFO[ListItem.Art(poster)]</texture>
+					<aspectratio>scale</aspectratio>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>
+			</control>
+			
+			<control type="group">
+				<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+				<top>320</top>
+				<control type="image">
+					<left>35</left>
+					<top>0</top>
+					<width>250</width>
+					<height>50</height>
+					<texture colordiffuse="CCFFFFFF">overlays/overlayfade.png</texture>
+					<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>20</top>
+					<width>244</width>
+					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
+					<font>font20_title</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>right</align>
+				</control>
+				<control type="image">
+					<left>254</left>
+					<top>23</top>
+					<width>24</width>
+					<height>24</height>
+					<texture>lists/played-total.png</texture>
+				</control>
+			</control>
+			
+			<control type="image">
+				<left>35</left>
+				<top>338</top>
+				<width>32</width>
+				<height>32</height>
+				<texture>$VAR[WallWatchedIconVar]</texture>
+			</control>
+			<control type="group">
+				<left>135</left>
+				<top>-8</top>
+				<include condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">RatingCircle</include>
+			</control>
+			<control type="progress">
+				<left>35</left>
+				<top>350</top>
+				<width>250</width>
+				<height>1</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control> -->
+			
+		</definition>
+	</include>
+<description>-----------------vV  Vv-----------------</description>
+	<include name="KodiQ-VerticalLiveTvFocusedLayout">
+	    <definition>
+		    <control type="group" id="-8">					    
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="21">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+					<bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="124,121.2" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<desription>-------------------------vV Image When Foucused Vv-----------------------------</desription>
+			<control type="group" id="3030">
+				<depth>DepthContentPopout</depth>
+				
+				<control type="image" id="3032">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+				
+				<control type="image" id="3031">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>keep</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<desription>-------------------------vV Top CinemaBox_GlowLine Vv-----------------------------</desription>
+			<control type="group" id="-12">						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>					
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+<desription>-------------------------vV Bottom CinemaBox_GlowLine Vv-----------------------------</desription>
+			<control type="group" id="-12">						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>291</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>284</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+			
+			<control type="grouplist">
+				
+			</control>
+		</definition>
+	</include>
+<description>-----------------vV KodiQ CatchUp Episode Layout for (Horizontal) view====P1 Vv-----------------</description>
+    <include name="KodiQ-HorizontalEpisodesLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<param name="focused">false</param>
+		<definition>
+			<control type="group">					    
+			<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+                    <bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="105,110" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+					    <effect type="zoom" start="103,108" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+			<control type="group">
+			<depth>DepthContentPopout</depth>						
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+                    <bordersize>5</bordersize>
+				    <animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+				    </animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+		    </control>
+			<control type="group">
+				<visible>!Window.IsActive(videos)</visible>
+				<control type="label">
+					<left>29</left>
+					<top>210</top>
+					<width>260</width>
+					<label>$PARAM[sub_label]</label>
+					<font>font12</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>center</align>
+				</control>
+				<control type="label">
+					<left>-15</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>10</textoffsetx>
+					<label>$PARAM[main_label]</label>
+					<font>KodiQ-Regular-CatchUp_Title</font>
+					<shadowcolor>26000000</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control>
+			</control>
+			<control type="progress">
+				<left>20</left>
+				<top>258</top>
+				<width>276</width>
+				<height>1</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control>
+			<control type="group">
+				<left>134</left>
+				<top>8</top>
+				<include>UserRatingCircle</include>
+			</control>
+		</definition>
+	</include>	
+    <!--  -->
+<description>-----------------vV KodiQ CatchUp Episode (Focused) Layout for (Horizontal) view====P2 Vv-----------------</description>
+    <include name="KodiQ-HorizontalEpisodesFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<definition>
+			<control type="group">
+				<posx>70</posx>    
+				<posy>5</posy>
+				<control type="group">					    
+					<depth>DepthContentPopout</depth>
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+						<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+						<bordersize>-0</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,486,330" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,486,330" end="100" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+					</control>
+				</control>
+<description>-----------------vV Image When Focused Vv-----------------</description>				
+				<control type="group">
+					<depth>DepthContentPopout</depth>						
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+						<bordersize>5</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="113" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="113" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+					</control>
+				</control>			
+				<control type="group">
+					<visible>!Window.IsActive(videos)</visible>
+					<control type="label">
+						<left>29</left>
+						<top>210</top>
+						<width>260</width>
+						<label>$PARAM[sub_label]</label>
+						<font>font12</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+					</control>
+					<control type="label">
+						<left>-15</left>
+						<top>245</top>					        
+						<textoffsetx>10</textoffsetx>
+						<label>$PARAM[main_label]</label>
+						<font>KodiQ-Regular-CatchUp_Title</font>
+						<shadowcolor>26000000</shadowcolor>
+						<align>left</align>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,420,46" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,420,46" end="100" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+					</control>
+				</control>
+				<control type="progress">
+					<left>20</left>
+					<top>258</top>
+					<width>276</width>
+					<height>1</height>
+					<texturebg></texturebg>
+					<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+					<info>ListItem.PercentPlayed</info>
+					<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+				</control>
+				<control type="group">
+					<left>134</left>
+					<top>8</top>
+					<include>UserRatingCircle</include>
+				</control>
+				
+				<control type="image">
+					<left>15</left>
+					<top>100</top>
+					<align>center</align>
+					<info>ListItem.Title</info>
+					<font>font12</font>
+					<width>230</width>
+				</control>
+			</control>
+		</definition>
+	</include>	
+
+    <!--  -->
+
+<desription>-------------------------vV Itemlayout Vv-----------------------------</desription>
+    <include name="KodiQ-VerticalMoviesLayout">
+		<param name="focused">false</param>
+		<definition>		
+			<control type="group">
+				<control type="image">
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(poster)]</texture>
+					<bordertexture border="0" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</bordertexture>
+                    <bordersize>5</bordersize>					
+				</control>
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>				
+			</control>			
+		</definition>
+	</include>
+<desription>-------------------------vV Focused Itemlayout Vv-----------------------------</desription>
+    <include name="KodiQ-VerticalFocusedMoviesLayout">
+		<definition>
+			<control type="group" id="-8">					    
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="21">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+					<bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="124,121.2" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<desription>-------------------------vV Image When Foucused Vv-----------------------------</desription>			
+			<control type="group" id="3030">
+				<depth>DepthContentPopout</depth>						
+				<control type="image" id="3031">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(poster)]</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<desription>-------------------------vV Top CinemaBox_GlowLine Vv-----------------------------</desription>
+			<control type="group" id="-12">						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>					
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+<desription>-------------------------vV Bottom CinemaBox_GlowLine Vv-----------------------------</desription>
+			<control type="group" id="-12">						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>291</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>284</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+			
+		</definition>
+	</include>
+
+<include name="KodiQ-VerticalMusicLayout">
+		<!-- <param name="fallback_image">DefaultFolder.png</param>
+		<param name="main_label">$INFO[ListItem.Artist]</param>
+		<param name="sub_label">$INFO[ListItem.Title]</param>
+		<param name="single_label">$INFO[ListItem.Label]</param>-->
+		<!-- <param name="focused">false</param> -->
+		<definition>			
+			<control type="group">
+				<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+<!--======================Kodi cinema posters for movies right side====================================-->
+				<control type="image">
+					<!--<left>0</left>
+					<top>0</top>-->
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>auto</aspectratio>
+					<!-- <texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture> -->					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>  
+					<bordertexture border="0" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</bordertexture>
+                    <bordersize>5</bordersize>					
+				</control>
+				<control type="image">
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<!-- <bordertexture border="0">overlays/shadow.png</bordertexture> -->
+					<bordersize>5</bordersize>
+				</control>
+<!--==========================================================-->
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>
+				
+				<control type="group">
+					<control type="textbox">
+						<left>64</left>
+						<top>260</top>
+						<width>240</width>
+						<height>70</height>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-VerticalCategories</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+					</control>
+				</control>
+				
+			</control>
+			
+			<!-- <control type="group">
+				<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
+				<control type="image">
+					<left>11</left>
+					<top>-14</top>
+					<width>298</width>
+					<height>408</height>
+					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>$PARAM[focused]</visible>
+					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
+				</control>
+				<control type="image">
+					<left>15</left>
+					<top>-10</top>
+					<width>290</width>
+					<height>400</height>
+					<texture background="true">$INFO[ListItem.Art(poster)]</texture>
+					<aspectratio>scale</aspectratio>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>
+			</control>
+			
+			<control type="group">
+				<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+				<top>320</top>
+				<control type="image">
+					<left>35</left>
+					<top>0</top>
+					<width>250</width>
+					<height>50</height>
+					<texture colordiffuse="CCFFFFFF">overlays/overlayfade.png</texture>
+					<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>20</top>
+					<width>244</width>
+					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
+					<font>font20_title</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>right</align>
+				</control>
+				<control type="image">
+					<left>254</left>
+					<top>23</top>
+					<width>24</width>
+					<height>24</height>
+					<texture>lists/played-total.png</texture>
+				</control>
+			</control>
+			
+			<control type="image">
+				<left>35</left>
+				<top>338</top>
+				<width>32</width>
+				<height>32</height>
+				<texture>$VAR[WallWatchedIconVar]</texture>
+			</control>
+			<control type="group">
+				<left>135</left>
+				<top>-8</top>
+				<include condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">RatingCircle</include>
+			</control>
+			<control type="progress">
+				<left>35</left>
+				<top>350</top>
+				<width>250</width>
+				<height>1</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control> -->
+			
+		</definition>
+	</include>
+
+<include name="KodiQ-VerticalFocusedMusicLayout">
+		<!-- <param name="fallback_image">DefaultFolder.png</param>
+		<param name="main_label">$INFO[ListItem.Artist]</param>
+		<param name="sub_label">$INFO[ListItem.Title]</param>
+		<param name="single_label">$INFO[ListItem.Label]</param> -->
+		<!-- <param name="focused">false</param> -->
+		<definition>
+			<control type="group" id="-8">					    
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="21">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+					<bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="124,121.2" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<!--=========================================Image when foucused===============================================-->
+			<control type="group" id="3030">
+				<depth>DepthContentPopout</depth>
+				
+				<!-- <control type="image">
+					<posx>60</posx>
+					<posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<bordersize>5</bordersize>
+				</control> -->
+				
+				<control type="image" id="3032">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+				
+				<control type="image" id="3031">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>keep</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+				<control type="group">
+			        <control type="textbox">
+						<left>132</left>
+						<top>270</top>
+						<width>240</width>
+						<height>70</height>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-VerticalCategories</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="252,170" />
+						</animation>
+					</control>
+				</control>
+			</control>
+<!--=================================Top CinemaBox_GlowLine=======================================-->
+			<control type="group" id="-12">
+				<!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+				<!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+				<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+	<!--============================-->
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+				
+			</control>
+			
+<!--=================================Bottom CinemaBox_GlowLine=======================================-->
+			<control type="group" id="-12">
+				<!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+				<!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+				<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>291</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+	<!--============================-->
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>284</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+			
+			<control type="grouplist">
+				
+			</control>
+		</definition>
+	</include>
+    <!--===============================KodiQ Pictures Layout for (Horizontal) view====P1========================================-->
+    <include name="KodiQ-HorizontalPictureLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<param name="focused">false</param>
+		<definition>
+			<control type="group">					    
+			<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+                    <bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="105,110" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+					    <effect type="zoom" start="103,108" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+			<control type="group">
+			<depth>DepthContentPopout</depth>						
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+                    <bordersize>5</bordersize>
+				    <animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+				    </animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+		    </control>
+			<control type="group">
+				<visible>!Window.IsActive(videos)</visible>
+				<control type="label">
+					<left>29</left>
+					<top>210</top>
+					<width>260</width>
+					<label>$PARAM[sub_label]</label>
+					<font>font12</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>center</align>
+				</control>
+				<control type="label">
+					<left>-15</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>10</textoffsetx>
+					<label>$PARAM[main_label]</label>
+					<font>KodiQ-Regular-CatchUp_Title</font>
+					<shadowcolor>26000000</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control>
+			</control>
+			<control type="progress">
+				<left>20</left>
+				<top>258</top>
+				<width>276</width>
+				<height>1</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control>
+			<control type="group">
+				<left>134</left>
+				<top>8</top>
+				<include>UserRatingCircle</include>
+			</control>
+		</definition>
+	</include>	
+
+    <!--  -->
+<!--===============================KodiQ Pictures (Focused) Layout for (Horizontal) view====P2========================================-->
+    <include name="KodiQ-HorizontalPictureFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<!-- <param name="focused">false</param> -->
+		<definition>
+			<control type="group">
+				<posx>70</posx>    
+				<posy>5</posy>
+				<control type="group">					    
+					<depth>DepthContentPopout</depth>
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+						<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+						<bordersize>-0</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,486,330" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,486,330" end="100" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+					</control>
+				</control>
+	<!--=========================================Image when foucused===============================================-->
+				<control type="group">
+					<depth>DepthContentPopout</depth>						
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+						<bordersize>5</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="113" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="113" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+					</control>
+				</control>			
+				<control type="group">
+					<visible>!Window.IsActive(videos)</visible>
+					<control type="label">
+						<left>29</left>
+						<top>210</top>
+						<width>260</width>
+						<label>$PARAM[sub_label]</label>
+						<font>font12</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+					</control>
+					<control type="label">
+						<left>-15</left>
+						<top>245</top>					        
+						<textoffsetx>10</textoffsetx>
+						<label>$PARAM[main_label]</label>
+						<font>KodiQ-Regular-CatchUp_Title</font>
+						<shadowcolor>26000000</shadowcolor>
+						<align>left</align>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,420,46" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,420,46" end="100" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+					</control>
+				</control>
+				<control type="progress">
+					<left>20</left>
+					<top>258</top>
+					<width>276</width>
+					<height>1</height>
+					<texturebg></texturebg>
+					<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+					<info>ListItem.PercentPlayed</info>
+					<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+				</control>
+				<control type="group">
+					<left>134</left>
+					<top>8</top>
+					<include>UserRatingCircle</include>
+				</control>
+				
+				<control type="image">
+					<left>15</left>
+					<top>100</top>
+					<align>center</align>
+					<info>ListItem.Title</info>
+					<font>font12</font>
+					<width>230</width>
+				</control>
+			</control>
+		</definition>
+	</include>	
+
+<!--===============================KodiQ Categories Layout for (Vertical) view====P1========================================-->
+<include name="KodiQ-VerticalCategoriesLayout">
+		<definition>			
+			<control type="group">
+				<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+<!--======================Kodi cinema posters for movies right side====================================-->
+				<control type="image">
+					<!--<left>0</left>
+					<top>0</top>-->
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>auto</aspectratio>
+					<!-- <texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture> -->					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>  
+					<bordertexture border="0" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</bordertexture>
+                    <bordersize>5</bordersize>					
+				</control>
+				<control type="image">
+					<posx>60</posx>
+		            <posy>0</posy>
+					<width>248</width>
+					<height>330</height>
+                    <aspectratio>keep</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<!-- <bordertexture border="0">overlays/shadow.png</bordertexture> -->
+					<bordersize>5</bordersize>
+				</control>
+<!--==========================================================-->
+				<control type="image">
+					<left>35</left>
+					<top>290</top>
+					<width>80</width>
+					<height>80</height>
+					<texture>overlays/overlay-bg.png</texture>
+					<visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>		        
+			</control>
+			
+			<control type="group">
+			    <control type="textbox">
+					<left>64</left>
+					<top>260</top>
+					<width>240</width>
+					<height>70</height>
+					<label>$INFO[ListItem.Label]</label>
+					<font>KodiQ-VerticalCategories</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+				</control>
+			</control>
+			
+		</definition>
+	</include>
+
+<include name="KodiQ-VerticalFocusedCategoriesLayout">
+		<definition>		    
+			<control type="group" id="-8">					    
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="21">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+					<bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="124,121.2" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+<!--=========================================Image when foucused===============================================-->
+			<control type="group" id="3030">
+				<depth>DepthContentPopout</depth>
+				
+				<control type="image" id="3032">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">dialogs/dialog-bg-nobo.png</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+				
+				<control type="image" id="3031">
+					<posx>128</posx>
+					<posy>10</posy>
+					<width>248</width>
+					<height>330</height>
+					<aspectratio>keep</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.icon]</texture>
+					<bordersize>5</bordersize>
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+
+                <control type="group">
+			        <control type="textbox">
+						<left>132</left>
+						<top>270</top>
+						<width>240</width>
+						<height>70</height>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-VerticalCategories</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="252,170" />
+						</animation>
+					</control>
+				</control>
+				
+			</control>
+<!--=================================Top CinemaBox_GlowLine=======================================-->
+			<control type="group" id="-12">
+				<!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+				<!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+				<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+	<!--============================-->
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>5</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>						
+			</control>
+			
+<!--=================================Bottom CinemaBox_GlowLine=======================================-->
+			<control type="group" id="-12">
+				<!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+				<!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+				<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+				<depth>DepthContentPopout</depth>
+				<control type="image" id="-13">						
+					<posx>156</posx>
+					<posy>291</posy>
+					<width>190</width>
+					<height>12</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+					<bordersize>-0</bordersize>						
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">							    
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   
+				</control>
+	<!--============================-->
+				<control type="image" id="-15">
+					<posx>156</posx>
+					<posy>284</posy>
+					<width>33</width>
+					<height>15</height>
+					<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+					<aspectratio>auto</aspectratio>
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+					<bordersize>-0</bordersize>							
+					<animation type="Focus" reversible="false">
+						<effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+						<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+						<effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+					</animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+					</animation>                   					
+				</control>               				
+			</control>
+		</definition>
+	</include>
+    
+    <!--===============================KodiQ Categories Layout for (Horizontal) view====P1========================================-->
+    <include name="KodiQ-HorizontalCategoriesLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<param name="focused">false</param>
+		<definition>
+			<control type="group">					    
+			<depth>DepthContentPopout</depth>
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+                    <bordersize>-0</bordersize>
+					<animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="105,110" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+					<animation type="Unfocus">
+					    <effect type="zoom" start="103,108" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+			</control>
+			<control type="group">
+			<depth>DepthContentPopout</depth>						
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>408</width>
+				    <height>237</height>
+                    <aspectratio>auto</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+                    <bordersize>5</bordersize>
+				    <animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+				    </animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation>
+				</control>
+		    </control>
+			<control type="group">
+				<!-- <visible>!Window.IsActive(videos)</visible>
+				<control type="label">
+					<left>29</left>
+					<top>210</top>
+					<width>260</width>
+					<label>$PARAM[sub_label]</label>
+					<font>font12</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>center</align>
+				</control> -->
+				<control type="label">
+					<left>-15</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>10</textoffsetx>
+					<label>$INFO[ListItem.Label]</label>
+					<font>KodiQ-Regular-CatchUp_Title</font>
+					<shadowcolor>black</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control>
+			</control>
+			<!-- <control type="progress">
+				<left>20</left>
+				<top>258</top>
+				<width>276</width>
+				<height>1</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control>
+			<control type="group">
+				<left>134</left>
+				<top>8</top>
+				<include>UserRatingCircle</include>
+			</control> -->
+		</definition>
+	</include>	
+
+<!--===============================KodiQ Categories (Focused) Layout for (Horizontal) view====P2========================================-->
+    <include name="KodiQ-HorizontalCategoriesFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<!-- <param name="focused">false</param> -->
+		<definition>
+			<control type="group">
+				<!-- <posx>700</posx>    
+				<posy>5</posy> -->
+				<control type="group">					    
+					<depth>DepthContentPopout</depth>
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+						<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+						<bordersize>-0</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,486,330" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,486,330" end="100" time="200" tween="sine" easing="inout" center="203,87" />
+						</animation>
+					</control>
+				</control>
+	<!--=========================================Image when foucused===============================================-->
+				<control type="group">
+					<depth>DepthContentPopout</depth>						
+					<control type="image">
+						<left>0</left>
+						<top>10</top>
+						<width>408</width>
+						<height>237</height>
+						<aspectratio>auto</aspectratio>					
+						<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+						<bordersize>5</bordersize>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="113" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="113" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						</animation>
+					</control>
+				</control>			
+				<control type="group">
+					<visible>!Window.IsActive(videos)</visible>
+					<control type="label">
+						<left>29</left>
+						<top>210</top>
+						<width>260</width>
+						<label>$PARAM[sub_label]</label>
+						<font>font12</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<align>center</align>
+					</control>
+					<control type="label">
+						<left>-15</left>
+						<top>245</top>					        
+						<textoffsetx>10</textoffsetx>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-Regular-CatchUp_Title</font>
+						<shadowcolor>black</shadowcolor>
+						<align>left</align>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="0,0,420,46" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+						<animation type="Unfocus">
+							<effect type="zoom" start="0,0,420,46" end="100" time="200" tween="sine" easing="inout" center="280,130" />
+						</animation>
+					</control>
+				</control>
+				<!-- <control type="progress">
+					<left>20</left>
+					<top>258</top>
+					<width>276</width>
+					<height>1</height>
+					<texturebg></texturebg>
+					<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
+					<info>ListItem.PercentPlayed</info>
+					<visible>!Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+				</control> -->
+				<!-- <control type="group">
+					<left>134</left>
+					<top>8</top>
+					<include>UserRatingCircle</include>
+				</control> -->
+				
+				<!-- <control type="image">
+					<left>15</left>
+					<top>100</top>
+					<align>center</align>
+					<info>ListItem.Title</info>
+					<font>font12</font>
+					<width>230</width>
+				</control> -->
+			</control>
+		</definition>
+	</include>	
+
+
+        <!--===============================KodiQ Categories Layout for (Horizontal) view====P1========================================-->
+    <include name="KodiQ-HorizontalCategoriesTestLayout">
+		<!-- <param name="fallback_image">DefaultTVShows.png</param>
+		<param name="focused">false</param> -->
+		<definition>
+			<control type="group">
+				<left>70</left>
+				<control type="image">
+					<width>316</width>
+					<height>200</height>
+					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+				    <centertop>0</centertop>
+					<left>90</left>
+					<top>-62</top>
+					<width>128</width>
+					<height>$PARAM[icon_height]</height>
+					<texture fallback="DefaultFolder.png">$INFO[ListItem.icon]</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+				<control type="textbox">
+					<left>38</left>
+					<top>106</top>
+					<width>240</width>
+					<height>70</height>
+					<label>$INFO[ListItem.Label]</label>
+					<font>font25_narrow</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+				</control>
+			</control>
+		</definition>
+	</include>	
+
+<!--===============================KodiQ Categories (Focused) Layout for (Horizontal) view====P2========================================-->
+    <include name="KodiQ-HorizontalCategoriesTestFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<!-- <param name="focused">false</param> -->
+		<definition>
+			<control type="group">
+				<depth>DepthContentPopout</depth>
+				<left>70</left>
+				<animation type="Focus">
+					<effect type="zoom" start="100" end="115" time="200" tween="sine" easing="inout" center="228,70" />
+				</animation>
+				<animation type="Unfocus">
+					<effect type="zoom" start="115" end="100" time="200" tween="sine" easing="inout" center="228,70" />
+				</animation>
+				<control type="image">
+					<width>316</width>
+					<height>200</height>
+					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+					<width>316</width>
+					<height>200</height>
+					<texture colordiffuse="button_focus">colors/grey.png</texture>
+					<bordersize>20</bordersize>
+					<include>Animation_FocusTextureFade</include>
+				</control>
+				<control type="image">
+				    <centertop>66</centertop>
+					<left>88</left>
+					<top>-80</top>
+					<width>132</width>
+					<texture fallback="DefaultFolder.png">$INFO[ListItem.icon]</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+				<control type="textbox">
+					<left>38</left>
+					<top>106</top>
+					<width>240</width>
+					<height>70</height>
+					<label>$INFO[ListItem.Label]</label>
+					<font>font25_narrow</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+				</control>
+			</control>
+		</definition>
+	</include>	
+
+
+    <!--===============================KodiQ Settings Layout for (Horizontal) view====P1========================================-->
+    <include name="KodiQ-SystemInfoLayout">
+		
+		<definition>
+		
+			<control type="group">
+                <posx>0</posx>
+				<posy>500</posy>				
+			    <control type="group">
+				    <control type="label">
+				        <posx>-458</posx>
+						<posy>-76</posy>
+						<width>1020</width>
+					    <aligny>center</aligny>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-Regular-SystemSettings</font>
+						<shadowcolor>text_shadow</shadowcolor>						
+				    </control>					
+					<control type="label">
+				        <posx>-463</posx>
+						<posy>-76</posy>
+						<width>1020</width>
+					    <aligny>center</aligny>
+						<align>right</align>
+						<label>$INFO[ListItem.Label2]</label>
+						<font>KodiQ-Regular-SystemSettings</font>
+						<shadowcolor>text_shadow</shadowcolor>						
+				    </control>					
+				</control>
+				
+				<control type="group">				
+					<control type="image">
+						<posx>-460</posx>
+						<posy>0</posy>
+						<width>1020</width>
+						<height>3</height>
+						<!-- <align>center</align>
+					    <aligny>center</aligny> -->
+						<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+					</control>
+				</control>
+			</control>
+			
+		</definition>
+		
+	</include>	
+<!--===============================KodiQ Settings (Focused) Layout for (Horizontal) view====P2========================================-->
+    <include name="KodiQ-SystemInfoFocusedLayout">
+		
+		<definition>
+		
+			<control type="group">
+				<control type="group">
+					<posx>0</posx>
+					<posy>500</posy>
+                    <width>0</width>
+                    <height>0</height>					
+					<control type="group">
+						<control type="group">
+							<control type="label">
+								<posx>-458</posx>
+								<posy>-76</posy>
+								<width>1020</width>
+								<aligny>center</aligny>
+								<align>left</align>
+								<label>$INFO[ListItem.Label]</label>
+								<font>KodiQ-Regular-SystemSettings</font>
+								<shadowcolor>text_shadow</shadowcolor>						
+							</control>					
+							<control type="label">
+								<posx>-463</posx>
+								<posy>-76</posy>
+								<align>right</align>
+								<width>1020</width>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label2]</label>
+								<font>KodiQ-Regular-SystemSettings</font>
+								<shadowcolor>text_shadow</shadowcolor>						
+							</control>					
+						</control>
+						
+						<control type="image">
+							<posx>-460</posx>
+							<posy>0</posy>
+							<width>1020</width>
+							<height>3</height>
+							<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+						</control>
+					</control>
+					
+					<!-- <control type="group">					    
+						<depth>DepthContentPopout</depth>
+						<control type="image">
+							<left>0</left>
+							<top>10</top>
+							<width>408</width>
+							<height>237</height>
+							<aspectratio>auto</aspectratio>					
+							<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/SystemSettings/SystemSettingsButtonBox.png</texture>
+							<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+							<bordersize>-0</bordersize>
+							<animation type="Focus" reversible="false">
+								<effect type="zoom" start="30" end="40" time="200" tween="sine" easing="inout" center="203,87" />
+							</animation>
+							<animation type="Unfocus">
+								<effect type="zoom" start="40" end="30" time="200" tween="sine" easing="inout" center="203,87" />
+							</animation>
+						</control>
+						<control type="label">
+							<posx>0</posx>
+							<posy>0</posy>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</control> -->
+					
+				</control>
+			</control>
+			
+		</definition>
+		
+	</include>	
+
+
+<!--===============================KodiQ Settings Layout for (Horizontal) view====P1========================================-->
+    <include name="KodiQ-SystemInfoHighlightLayout">
+		
+		<definition>
+		
+			<control type="group">
+			
+				<control type="group">
+					<posx>0</posx>
+					<posy>0</posy>
+                    <width>1920</width>
+                    <height>1080</height>					
+					<include>KodiQ-VerticalListSummaryLayout</include>					
+				</control>
+				
+			</control>
+			
+		</definition>
+		
+	</include>	
+
+	<include name="KodiQ-SettingsFixedListLeft">
+		<focusedlayout height="95">						
+			<control type="group">
+				<control type="image">
+					<left>88</left>
+					<width>368</width>
+					<height>70</height>
+					<top>12</top>
+					<colordiffuse></colordiffuse>
+					<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+					<shadowcolor>black</shadowcolor>
+				</control>
+				<control type="image">
+					<left>82</left>
+					<width>380</width>
+					<height>82</height>
+					<top>6</top>
+					<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+					<shadowcolor>black</shadowcolor>
+				</control>
+				<control type="group">
+					<include>KodiQ-HomeMenu_SlidingGlow</include>								
+					<visible>Control.HasFocus(9001)</visible>
+				</control>
+				<visible>Control.HasFocus(9001)</visible>
+			</control>
+			
+			<control type="label">
+				<left>104</left>
+				<top>0</top>
+				<height>95</height>
+				<width>560</width>
+				<aligny>center</aligny>
+				<font>MainMenu_Focused</font>        <!--======To make the main menu text bigger when it is highlighed Check Fonts.xml======-->
+				<label>$INFO[ListItem.Label]</label>
+				<shadowcolor>text_shadow</shadowcolor>
+			</control>
+			
+		</focusedlayout>
+		<itemlayout height="95">
+			<control type="label">
+				<left>104</left>
+				<top>0</top>
+				<height>95</height>
+				<width>560</width>
+				<aligny>center</aligny>
+				<font>MainMenu_Layout</font>        <!--======To make the main menu text smaller when it is not highlighed Check Fonts.xml======-->
+				<label>$INFO[ListItem.Label]</label>
+				<shadowcolor>text_shadow</shadowcolor>
+			</control>
+		</itemlayout>
+	</include>
+
+    <!--===============================KodiQ WideList Layout for (Vertical) view====P1========================================-->
+    <include name="KodiQ-ViewWideListLayout">
+		
+		<definition>
+		
+			<control type="group">
+                <posx>0</posx>
+				<posy>500</posy>				
+			    <control type="group">
+				    <control type="label">
+				        <posx>-458</posx>
+						<posy>-76</posy>
+						<width>1020</width>
+					    <aligny>center</aligny>
+						<align>left</align>
+						<label>$INFO[ListItem.Label]</label>
+						<font>KodiQ-Regular-SystemSettings</font>
+						<shadowcolor>text_shadow</shadowcolor>						
+				    </control>					
+					<control type="label">
+				        <posx>-463</posx>
+						<posy>-76</posy>
+						<width>1020</width>
+					    <aligny>center</aligny>
+						<align>right</align>
+						<label>$INFO[ListItem.Label2]</label>
+						<font>KodiQ-Regular-SystemSettings</font>
+						<shadowcolor>text_shadow</shadowcolor>						
+				    </control>					
+				</control>
+				
+				<control type="group">				
+					<control type="image">
+						<posx>-460</posx>
+						<posy>0</posy>
+						<width>1020</width>
+						<height>3</height>
+						<!-- <align>center</align>
+					    <aligny>center</aligny> -->
+						<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+					</control>
+				</control>
+			</control>
+			
+		</definition>
+		
+	</include>	
+
+<!--===============================KodiQ WideList (Focused) Layout for (Vertical) view====P2========================================-->
+    <include name="KodiQ-ViewWideListFocusedLayout">
+		
+		<definition>
+		
+			<control type="group">
+				<control type="group">
+					<posx>0</posx>
+					<posy>500</posy>
+                    <width>0</width>
+                    <height>0</height>					
+					<control type="group">
+						<control type="group">
+							<control type="label">
+								<posx>-458</posx>
+								<posy>-76</posy>
+								<width>1020</width>
+								<aligny>center</aligny>
+								<align>left</align>
+								<label>$INFO[ListItem.Label]</label>
+								<font>KodiQ-Regular-SystemSettings</font>
+								<shadowcolor>text_shadow</shadowcolor>						
+							</control>					
+							<control type="label">
+								<posx>-463</posx>
+								<posy>-76</posy>
+								<align>right</align>
+								<width>1020</width>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label2]</label>
+								<font>KodiQ-Regular-SystemSettings</font>
+								<shadowcolor>text_shadow</shadowcolor>						
+							</control>					
+						</control>
+						
+						<control type="image">
+							<posx>-460</posx>
+							<posy>0</posy>
+							<width>1020</width>
+							<height>3</height>
+							<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+						</control>
+					</control>
+					
+					<!-- <control type="group">					    
+						<depth>DepthContentPopout</depth>
+						<control type="image">
+							<left>0</left>
+							<top>10</top>
+							<width>408</width>
+							<height>237</height>
+							<aspectratio>auto</aspectratio>					
+							<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/SystemSettings/SystemSettingsButtonBox.png</texture>
+							<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+							<bordersize>-0</bordersize>
+							<animation type="Focus" reversible="false">
+								<effect type="zoom" start="30" end="40" time="200" tween="sine" easing="inout" center="203,87" />
+							</animation>
+							<animation type="Unfocus">
+								<effect type="zoom" start="40" end="30" time="200" tween="sine" easing="inout" center="203,87" />
+							</animation>
+						</control>
+						<control type="label">
+							<posx>0</posx>
+							<posy>0</posy>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</control> -->
+					
+				</control>
+			</control>
+			
+		</definition>
+		
+	</include>	
+
+    <include name="KodiQ-HiddenSystemInfo">		
+		<definition>
+		<!-- Hidden labels -->
+	
+		</definition>
+	</include>
+
+<description>-----------------vV KodiQ Utube Layout for (Horizontal) view====P1 Vv-----------------</description>
+    <include name="KodiQ-UtubeHorizontalLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<param name="focused">false</param>
+		<definition>
+			
+			<control type="group">
+			<depth>DepthContentPopout</depth>						
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>336</width>
+				    <height>188</height>
+                    <aspectratio>16:9</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+                    <bordersize>5</bordersize>
+				   <!--  <animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+				    </animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation> -->
+				</control>
+		    </control>
+			
+			<control type="group">
+			    <posx>0</posx>
+				<posy>16</posy>
+				<control type="label">
+					<left>6</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>0</textoffsetx>
+					<label>[COLOR gray]$INFO[ListItem.Artist][/COLOR]</label>
+					<font>KodiQ-Regular-Youtube-ChannelName</font>
+					<shadowcolor>26000000</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control>
+
+                <control type="textbox">
+					<right>234</right>
+					<top>267</top>
+					<width>330</width>
+					<height>60</height>
+					<label>[COLOR gray]$INFO[VideoPlayer.RatingAndVotes] views[/COLOR]</label>
+					<font>KodiQ-Regular-Youtube-ChannelName</font>
+					<shadowcolor>26000000</shadowcolor>
+					<align>right</align>
+				</control>
+
+                <control type="group">
+				    <control type="textbox">
+						<left>6</left>
+						<bottom>-70</bottom>
+						<width>330</width>
+						<height>60</height>
+						<label>$INFO[ListItem.label][CR]</label>
+						<font>KodiQ-Medium-Youtube-VideoTitle</font>
+						<shadowcolor>26000000</shadowcolor>
+						<scroll>$PARAM[focused]</scroll>
+						<align>left</align>
+					</control>
+                </control>
+			</control>
+			
+			
+			<control type="group">
+			    <posx>220</posx>
+				<posy>0</posy>
+				<control type="group">
+					<posx>50</posx>
+					<posy>160</posy>
+					<align>right</align>
+					<aligny>center</aligny>
+					
+					<control type="image">
+						<posx>0</posx>
+						<posy>2</posy>
+						<width>49</width>
+						<height>20</height>
+						<texture>special://skin/extras/PVR_Q/Views/Utube/KodiQ_Utube_TimeBlack_2.png</texture>
+					</control>				
+					<control type="label">
+					    <posx>4</posx>
+						<posy>0</posy>
+						<width>300</width>
+						<height>0</height>
+						<font>KodiQ-Regular-Youtube-VideoTime</font>
+						<label>$INFO[$PARAM[infolabel_prefix]ListItem.Duration]</label>					
+					</control>
+					<visible>!String.IsEmpty($PARAM[infolabel_prefix]ListItem.Duration)</visible>
+				</control>
+			</control>
+			<!--=======================================Progress bar of current show/movie/Utube===============================================-->
+			<!-- <control type="group">
+				<control type="progress">
+					<left>18%</left>
+					<bottom>68</bottom>
+					<width>410</width>
+					<height>6</height>
+					<colordiffuse></colordiffuse>
+					<reveal>false</reveal>
+					<overlaytexture flipy="false">special://skin/extras/PVR_Q/FullscreenInfo/ProgressBar_TopShine.png</overlaytexture>
+					<texturebg>special://skin/extras/PVR_Q/FullscreenInfo/ProgressBar_Border.png</texturebg>
+					<midtexture>special://skin/extras/PVR_Q/FullscreenInfo/KodiQ_Utube_Red_2.png</midtexture>
+					<info>Player.ProgressCache</info>
+				</control>				
+			</control> -->
+			<!-- <control type="group">
+				<left>134</left>
+				<top>8</top>
+				<include>UserRatingCircle</include>
+			</control> -->
+			
+			<!-- <control type="group">
+			    <posx>200</posx>
+				<posy>148</posy>
+				<width>115</width>									
+				<include content="QUTube_TimeBackground">
+					<param name="texture" value="flags/flag.png" />
+				</include>
+				<control type="label">
+					<width>115</width>
+					<height>60</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[$PARAM[infolabel_prefix]ListItem.Duration]</label>
+					<font>KodiQ-Regular-Youtube-VideoTime</font>
+				</control>
+				<visible>!String.IsEmpty($PARAM[infolabel_prefix]ListItem.Duration)</visible>
+			</control> -->
+			
+		</definition>
+	</include>	
+    <!--  -->
+<description>-----------------vV KodiQ Utube (Focused) Layout for (Horizontal) view====P2 Vv-----------------</description>
+    <include name="KodiQ-UtubeHorizontalFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<definition>
+		
+		    <control type="group">
+			<depth>DepthContentPopout</depth>
+			    <control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>336</width>
+				    <height>188</height>
+                    <aspectratio>16:9</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/Views/Utube/KodiQ_Utube_ThumbBackground.png</texture>
+                    <bordersize>0</bordersize>
+				</control>
+				<control type="image">
+					<left>0</left>
+				    <top>10</top>
+				    <width>336</width>
+				    <height>188</height>
+                    <aspectratio>16:9</aspectratio>					
+					<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
+                    <bordersize>5</bordersize>
+				   <!--  <animation type="Focus" reversible="false">
+					    <effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+				    </animation>
+					<animation type="Unfocus">
+						<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+					</animation> -->
+				</control>
+		    </control>
+			
+			<control type="group">
+			    <posx>0</posx>
+				<posy>16</posy>
+				<!-- <control type="textbox">
+					<left>6</left>
+					<top>140</top>
+					<width>330</width>
+					<height>50</height>
+					<label>$INFO[ListItem.title][CR]</label>
+					<font>KodiQ-Medium-Youtube-VideoTitle</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>center</align>
+				</control> -->
+				<control type="label">
+					<left>6</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>0</textoffsetx>
+					<label>[COLOR gray]$INFO[ListItem.Artist][/COLOR]</label>
+					<font>KodiQ-Regular-Youtube-ChannelName</font>
+					<shadowcolor>26000000</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control>
+				<!-- <control type="label">
+					<left>150</left>
+					<top>247</top>
+					<width>367</width>
+					<textoffsetx>10</textoffsetx>
+					<label>$INFO[ListItem.DateAdded]</label>
+					<font>KodiQ-Regular-Youtube-ChannelName</font>
+					<shadowcolor>26000000</shadowcolor>
+					<scroll>$PARAM[focused]</scroll>
+					<align>left</align>
+				</control> -->
+
+                <control type="textbox">
+					<right>184</right>
+					<top>267</top>
+					<width>330</width>
+					<height>60</height>
+					<label>[COLOR gray]$INFO[VideoPlayer.RatingAndVotes] views[/COLOR]</label>
+					<font>KodiQ-Regular-Youtube-ChannelName</font>
+					<shadowcolor>26000000</shadowcolor>
+					<align>right</align>
+				</control>
+
+                <control type="group">
+				    <control type="textbox">
+						<left>6</left>
+						<bottom>-70</bottom>
+						<width>330</width>
+						<height>60</height>
+						<label>$INFO[ListItem.label][CR]</label>
+						<font>KodiQ-Medium-Youtube-VideoTitle</font>
+						<shadowcolor>26000000</shadowcolor>
+						<scroll>$PARAM[focused]</scroll>
+						<align>left</align>
+					</control>
+                </control>
+			</control>
+			<control type="group">
+			    <posx>220</posx>
+				<posy>0</posy>
+				<control type="group">
+					<posx>50</posx>
+					<posy>160</posy>
+					<align>right</align>
+					<aligny>center</aligny>
+					
+					<control type="image">
+						<posx>0</posx>
+						<posy>2</posy>
+						<width>49</width>
+						<height>20</height>
+						<texture>special://skin/extras/PVR_Q/Views/Utube/KodiQ_Utube_TimeBlack_2.png</texture>
+					</control>				
+					<control type="label">
+					    <posx>4</posx>
+						<posy>0</posy>
+						<width>300</width>
+						<height>0</height>
+						<font>KodiQ-Regular-Youtube-VideoTime</font>
+						<label>$INFO[$PARAM[infolabel_prefix]ListItem.Duration]</label>					
+					</control>
+					<visible>!String.IsEmpty($PARAM[infolabel_prefix]ListItem.Duration)</visible>
+				</control>
+			</control>
+			<control type="group">
+			    <posx>220</posx>
+				<posy>0</posy>
+				<control type="group">
+					<posx>50</posx>
+					<posy>160</posy>
+					<align>right</align>
+					<aligny>center</aligny>
+					
+					<control type="image">
+						<posx>0</posx>
+						<posy>2</posy>
+						<width>49</width>
+						<height>20</height>
+						<texture>special://skin/extras/PVR_Q/Views/Utube/KodiQ_Utube_TimeBlack_2.png</texture>
+					</control>				
+					<control type="label">
+					    <posx>4</posx>
+						<posy>0</posy>
+						<width>300</width>
+						<height>0</height>
+						<font>KodiQ-Regular-Youtube-VideoTime</font>
+						<label>$INFO[$PARAM[infolabel_prefix]ListItem.Duration]</label>					
+					</control>
+					<visible>!String.IsEmpty($PARAM[infolabel_prefix]ListItem.Duration)</visible>
+				</control>
+			</control>
+		</definition>
+	</include>	
+
+<description>-----------------vV KodiQ Utube Widelist Layout for (Horizontal) view====P1 Vv-----------------</description>
+    <include name="KodiQ-UtubeWideListLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<definition>
+		
+		    
+		</definition>
+	</include>
+<description>-----------------vV KodiQ Utube Widelist (Focused) Layout for (Horizontal) view====P2 Vv-----------------</description>
+    <include name="KodiQ-UtubeWideListFocusedLayout">
+		<param name="fallback_image">DefaultTVShows.png</param>
+		<definition>
+		
+		    
+		</definition>
+	</include>
+
+<description>~~~~~~~~~~~~~vV These wil be for EpgGuide/EpgGrid Vv~~~~~~~~~~~~~~</description>
+
+<description>-----------------vV KodiQ RulerLayout for () view====P1 Vv-----------------</description>
+    <include name="KodiQ-RulerLayout" height="30" width="1400">
+		<definition>
+		    <control type="label">
+			    <posx>30</posx>
+				<posy>-7</posy>
+				<font>Rounded_Mplus_1C_Medium_EPG_Date</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>[LOWERCASE]$INFO[ListItem.Label][/LOWERCASE]</label>
+				<textoffsetx>0</textoffsetx>
+			</control>
+		</definition>
+	</include>
+<description>-----------------vV KodiQ RulerDateLayout for () view====P2 Vv-----------------</description>
+    <include name="KodiQ-RulerDateLayout" height="45" width="1700">
+		<definition>
+		    <!-- <control type="label">
+				<width>1700</width>
+				<height>45</height>
+				<font>font13</font>
+				<label>$INFO[ListItem.Label]</label>
+				<textcolor>button_focus</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+			</control> -->
+		</definition>
+	</include>
+<description>-----------------vV KodiQ ChannelLayout for () view====P1 Vv-----------------</description>
+    <include name="KodiQ-ChannelLayout" height="90" width="325">
+		<definition>
+		    <control type="label" id="1">
+				<left>20</left>
+				<top>25</top>
+				<font>Rounded_Mplus_1C_PVRleft</font>
+				<label>$INFO[ListItem.ChannelName]</label>
+				<align>left</align>
+				<shadowcolor>black</shadowcolor>
+				<texture border="0" fallback="DefaultFolder.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture>
+			</control>
+			<control type="image" id="2">
+				<width>100%</width>
+				<height>4</height>
+				<top>90</top>
+				<align>center</align>
+				<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+			</control>
+		</definition>
+	</include>
+<description>-----------------vV KodiQ FocusedChannelLayout for () view====P2 Vv-----------------</description>
+    <include name="KodiQ-FocusedChannelLayout" height="90" width="325">
+		<definition>
+		    <!-- <control type="label">
+				<right>0</right>
+				<top>0</top>
+				<width>75</width>
+				<height>90</height>
+				<font>font12</font>
+				<label>$INFO[ListItem.ChannelNumber]</label>
+				<texture border="12" fallback="windows/pvr/epg-genres/192.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture>
+			</control> -->
+			<control type="image" id="2">							 
+				<top>5</top>
+				<left>1</left>
+				<width>100%</width>
+				<height>96%</height>
+				<texture>special://skin/extras/PVR_Q/TvGuide/channel_highlight.png</texture>
+				<texture border="12" colordiffuse="button_focus">windows/pvr/epg-genres/128.png</texture>
+			</control>
+			<control type="image" id="2">
+				<width>100%</width>
+				<height>4</height>
+				<top>90</top>
+				<texture>special://skin/extras/PVR_Q/TvGuide/shadedline.png</texture>
+			</control>
+			<control type="group">
+				<control type="image">
+					<left>0</left>
+					<width>100%</width>
+					<height>100%</height>
+					<top>0</top>
+					<bordertexture border="5" >special://skin/extras/PVR_Q/TvGuide/PVR_Plot_Inner_Box.png</bordertexture>
+					<bordersize>5</bordersize>
+					<centerleft>100%</centerleft>
+					<centerright>100%</centerright>
+					<centertop>100%</centertop>
+					<centerbottom>100%</centerbottom>
+					<aspectratio>keep</aspectratio>
+					<texture border="5">special://skin/extras/PVR_Q/TvGuide/Program_MenuSelect_Inerborder.png</texture>
+					<shadowcolor>black</shadowcolor>
+				</control>
+				<visible>Control.HasFocus(50)</visible>
+			</control>
+			<control type="label" id="1">  
+				<left>20</left>
+				<top>25</top>         
+				<font>Rounded_Mplus_1C_PVRleft</font>
+				<label>$INFO[ListItem.ChannelName]</label>
+				<!-- <texture border="3" fallback="windows/pvr/epg-genres/16.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture> -->
+			</control>
+		</definition>
+	</include>
+<description>-----------------vV KodiQ ItemLayout for () view====P1 Vv-----------------</description>
+    <include name="KodiQ-ItemLayout" height="90" width="60">
+		<definition>
+		    <control type="label" id="1">
+				<left>30</left>
+				<top>0</top>
+				<aligny>center</aligny>
+				<shadowcolor>black</shadowcolor>
+				<font>Rounded_Mplus_1C_PVRleft</font>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="image" id="2">
+				<width>100%</width>
+				<height>4</height>
+				<top>90</top>
+				<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+				<texture border="0" colordiffuse="button_focus">windows/pvr/epg-genres/192.png</texture>
+			</control>
+			<control type="image">
+				<left>6</left>
+				<top>35</top>
+				<width>20</width>
+				<height>20</height>
+				<texture>$VAR[PVRTimerIcon]</texture>
+			</control>
+			<control type="group">
+				<control type="image" id="2">
+					<posx>0</posx>
+					<posy>4</posy>
+					<width>2</width>
+					<height>86</height>								
+					<texture>special://skin/extras/PVR_Q/TvGuide/KodiQ_ProgramSeparator.png</texture>
+					<visible>true</visible>								
+				</control>
+			</control>
+		</definition>
+	</include>
+<description>-----------------vV KodiQ FocusedLayout for () view====P2 Vv-----------------</description>
+    <include name="KodiQ-FocusedLayout" height="90" width="60">
+		<definition>
+		    <control type="group">
+				<control type="image" id="2">
+					<posx>0</posx>
+					<posy>4</posy>
+					<width>2</width>
+					<height>86</height>
+					<texture>special://skin/extras/PVR_Q/TvGuide/KodiQ_ProgramSeparator.png</texture>
+					<visible>true</visible>						
+				</control>
+			</control>
+			<control type="image" id="2">
+				<width>100%</width>
+				<height>4</height>
+				<top>90</top>
+				<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+			</control>						
+			<control type="image" id="2">
+				<top>5</top>
+				<left>1</left>
+				<width>100%</width>
+				<height>94%</height>
+				<texture border="3" fallback="windows/pvr/epg-genres/16.png">special://skin/extras/PVR_Q/TvGuide/Highlight_Under_Button.png</texture>
+				<visible>!Control.HasFocus(10)</visible>
+			</control>			
+			<control type="image" id="2">
+				<posx>-11</posx>
+				<posy>-10</posy>
+				<width>142%</width>
+				<height>128%</height>							
+				<texture border="-0">special://skin/extras/PVR_Q/TvGuide/Alpha_Border.png</texture>
+				<visible>Control.HasFocus(50)</visible>
+				<bordertexture border="10">special://skin/extras/PVR_Q/TvGuide/darkline.png</bordertexture>
+				<bordersize>13</bordersize>
+				<animation type="Focus" reversible="true">
+					<effect type="zoom" center="auto" start="0" end="100" time="200" tween="back" easing="inout" />
+				</animation> 
+			</control>				
+			<control type="image" id="1">
+				<top>5</top>
+				<left>1</left>
+				<width>100%</width>
+				<height>94%</height>								
+				<texture border="12">special://skin/extras/PVR_Q/TvGuide/MenuSelect_Background_2.png</texture>
+				<visible>Control.HasFocus(50)</visible>
+			</control>						
+			<control type="label" id="1">
+				<left>30</left>
+				<top>0</top>
+				<aligny>center</aligny>
+				<font>Rounded_Mplus_1C_PVRleft</font>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="image">
+				<left>6</left>
+				<top>35</top>
+				<width>20</width>
+				<height>20</height>
+				<texture>$VAR[PVRTimerIcon]</texture>
+			</control>
+		</definition>
+	</include>
+</includes>

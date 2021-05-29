@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="8887">
+	<defaultcontrol>9700</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	
+	<controls>
+	    <setting id="skinhelper.enablepvrthumbs" type="bool">true</setting>
+		
+		
+		<include>DefaultBackground</include>
+		
+        <control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="400" reversible="true" condition="!Window.Previous(SettingsCategory.xml)">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" reversible="true" condition="!Window.Next(SettingsCategory.xml)">WindowClose</animation>
+			<imagepath colordiffuse="35FFFFFF">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</imagepath>
+			<visible>!Player.HasMedia + !String.IsEmpty(Skin.String(HomeFanart.path))</visible>
+		</control>
+		<!--======================The title of the menu,,value="YourTitle"====================================-->
+        <control type="group">
+		    <left>69</left>
+			<width>900</width>
+			<top>376</top>
+			<height>100</height>
+		    <include content="MenuTitle">
+			    <param name="breadcrumbs_label" value="Settings" />
+     		</include>
+		</control>
+		
+		<!--============================These are the list names and the contents that will fill them=================================-->
+        <control type="group">
+			<!--=============================This is the contents that will populate the names================================-->
+	        <control type="grouplist" id="17501">
+			    <visible>String.IsEqual(Container(9700).ListItem.Property(id),summaryinfo)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="summaryinfo"/>
+				</include>
+				
+				<include>Close_FadeSlide_Right</include>
+          			
+				<control type="grouplist">
+					<control type="group">
+						<posx>0</posx>
+						<posy>0</posy>
+						<include>KodiQ-GroupListSystemStatsLayout</include>
+					</control>
+					
+					<control type="group">
+						<posx>0</posx>
+						<posy>0</posy>
+						<include>KodiQ-SystemInfoHighlightLayout</include>
+					</control>	
+				</control>				
+			</control>
+	
+			<!--=============================================================-->
+			<!--========================This is the type of list and the names=====================================-->		
+			<control type="group">
+				<control type="fixedlist" id="9700">
+					<include>OpenClose_FadeSlide_Left</include>
+					<!--<include>VisibleFadeEffect</include>-->
+					<!-- <pagecontrol>0</pagecontrol> -->
+					<left>-26</left>
+					<top>430</top>
+					<width>462</width>
+					<height>710</height>
+					<!-- <movement>0</movement> -->
+					<focusposition>0</focusposition>
+					<!-- <onfocus>ClearProperty(listposition,home)</onfocus> -->
+					<!-- <onright>SetFocus($INFO[Container(9700).ListItem.Property(menu_id)])</onright>
+					<onup>up</onup>
+					<ondown>down</ondown>-->
+					<onleft>back</onleft>
+					<!--<scrolltime>0</scrolltime>
+					<scrollspeed>0</scrollspeed> -->					
+					<!--===========================================================-->
+					<focusedlayout height="95">
+						<control type="group">
+							<depth>DepthContentPopout</depth>
+							<control type="group">
+								<control type="image">
+									<left>88</left>
+									<width>368</width>
+									<height>70</height>
+									<top>12</top>
+									<colordiffuse></colordiffuse>
+									<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+									<shadowcolor>black</shadowcolor>
+								</control>							
+								<control type="image">
+									<left>82</left>
+									<width>380</width>
+									<height>82</height>
+									<top>6</top>
+									<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+									<shadowcolor>black</shadowcolor>
+								</control>
+								
+								<control type="group">
+								    <include>KodiQ-HomeMenu_SlidingGlow</include>								
+                                    <visible>Control.HasFocus(9700)</visible>
+								</control>							    
+							</control>
+							
+							<control type="label">
+								<left>104</left>
+								<top>0</top>
+								<height>95</height>
+								<width>560</width>
+								<aligny>center</aligny>
+								<font>Rounded_Mplus_1C_Bold</font>        <!--======To make the main menu text bigger when it is highlighed Check Fonts.xml======-->
+								<label>$INFO[ListItem.Label]</label>
+								<shadowcolor>text_shadow</shadowcolor>
+							</control>
+						</control>					
+					</focusedlayout>
+					
+					<itemlayout height="95">
+						<control type="image">
+							<left>-3</left>
+							<top>1</top>
+							<width>95</width>
+							<height>95</height>
+							<texture colordiffuse="44FFFFFF">$INFO[ListItem.Art(thumb)]</texture>
+						</control>
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>Rounded_Mplus_1C</font>        <!--======To make the main menu text smaller when it is not highlighed Check Fonts.xml======-->
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</itemlayout>
+
+					<!--=========================Contents in Settings button=================================-->
+					<content>
+						<item id="01">
+							<label>System Info</label>
+							<onclick>ActivateWindow(8893)</onclick>   
+							<property name="menu_id">$NUMBER[17501]</property>
+							<property name="id">summaryinfo</property>
+							<!-- <visible>Control.HasFocus(9700)</visible> -->
+						</item>
+						
+						<item id="02">
+							<label>Status</label>
+							<onclick>ActivateWindow(PlayerSettings)</onclick>
+
+						</item>
+						
+						<item id="03">
+							<label>$LOCALIZE[14201]</label>
+							<onclick>ActivateWindow(PlayerSettings)</onclick>
+
+						</item>
+						<item id="04">
+							<label>$LOCALIZE[14212]</label>
+							<onclick>ActivateWindow(MediaSettings)</onclick>
+
+						</item>
+						<item id="05">
+							<label>PVR LiveTv</label>
+							<onclick>ActivateWindow(PVRSettings)</onclick>
+
+						</item>
+						<item id="06">
+							<label>$LOCALIZE[14208]</label>
+							<onclick>ActivateWindow(ServiceSettings)</onclick>
+
+						</item>
+						<item id="07">
+							<label>GameSettings</label>
+							<visible>System.GetBool(gamesgeneral.enable)</visible>
+							<onclick>ActivateWindow(GameSettings)</onclick>
+
+						</item>
+						<item id="08">
+							<label>$LOCALIZE[14207]</label>
+							<onclick>ActivateWindow(InterfaceSettings)</onclick>
+
+						</item>
+						<item id="09">
+							<label>$LOCALIZE[20077]</label>
+							<onclick>ActivateWindow(SkinSettings)</onclick>
+
+						</item>
+						<item id="10">
+							<label>$LOCALIZE[14210]</label>
+							<onclick>ActivateWindow(Profiles)</onclick>
+
+						</item>
+						<item id="11">
+							<label>$LOCALIZE[14209]</label>
+							<onclick>ActivateWindow(SystemSettings)</onclick>
+
+						</item>
+						<item id="12">
+							<label>LibreELEC</label>
+							<onclick>RunAddon(service.libreelec.settings)</onclick>
+
+							<visible>System.HasAddon(service.libreelec.settings)</visible>
+						</item>
+						
+						<item id="13">
+							<label>$LOCALIZE[31067]</label>
+							<onclick>ActivateWindow(eventlog)</onclick>
+
+						</item>
+						<item id="14">
+							<label>$LOCALIZE[10003]</label>
+							<onclick>ActivateWindow(filemanager)</onclick>
+
+						</item>
+						<item id="15">
+							<label>$LOCALIZE[24001]</label>
+							<onclick>ActivateWindow(addonbrowser)</onclick>
+
+						</item> 				    
+					</content>
+				</control>
+				
+			</control>			
+        </control>
+
+	</controls>
+</window>

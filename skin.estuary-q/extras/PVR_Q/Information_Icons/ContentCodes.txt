@@ -1,0 +1,13 @@
+
+<description>---------------------Content Codes------------------------</description>
+
+
+These codes describe the kind of content in the show.
+
+S: Sex or nudity.
+
+L: Strong language.
+
+V: Violent scenes.
+
+M: Material that's intended for a mature audience.

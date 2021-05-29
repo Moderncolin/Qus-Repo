@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<allowoverlay>true</allowoverlay>
+	<views>515,514,507,55,50</views>
+	<menucontrol>9000</menucontrol>
+	
+	<controls>
+		<control type="button" id="20000">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus(2000)</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20000)</visible>
+		</control>
+		<control type="button" id="20001">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus(2000)</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
+		</control>
+		
+		<include>DefaultBackground</include>
+		
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>600</fadetime>
+			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+			<animation effect="fade" time="400">VisibleChange</animation>
+			<imagepath background="true" colordiffuse="bg_overlay">$VAR[HomeFanartVar]</imagepath>
+			<visible>!Player.HasMedia</visible>
+		</control>
+		
+		<control type="group">   <description>------------------- This is the main group/parent ---------------------</description>
+		    
+			<include>View_515_QUWideList</include>
+			<include>View_514_QUTube</include>
+			
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>			
+			<control type="group" id="2000">   <description>---------------- Button/Item information groups: When highlighted/focused ---------------</description>
+				<left>462</left>
+				<animation type="Conditional" condition="Control.IsVisible(20000)" reversible="false">
+					<effect type="slide" end="0,20" time="60" tween="sine" />
+					<effect type="slide" end="0,-20" time="180" tween="sine" delay="80" />
+				</animation>
+				<animation type="Conditional" condition="Control.IsVisible(20001)" reversible="false">
+					<effect type="slide" end="0,-20" time="60" tween="sine" />
+					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
+				</animation>				
+				
+				<control type="group" id="4010">				
+				    <include>OpenClose_Right</include>				
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),youtube)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="pictures"/>
+					</include>
+					<control type="grouplist" id="4011">
+						<include>WidgetGroupListCommon</include>
+						<include content="KodiQ_PanelListHorizontalCategories" condition="!Container.Plugin(plugin.video.youtube)">
+							<param name="content_path" value="sources://video/plugin.video.youtube"/>
+							<param name="widget_header" value="$LOCALIZE[20094]"/>
+							<param name="widget_target" value="youtube"/>
+							<param name="list_id" value="4111"/>
+						</include>
+					</control>
+				</control>
+				
+<!--=============================================================-->
+	
+				<!--  <control type="grouplist" id="17700">
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),qsettings)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="qsettings"/>
+					</include>
+					
+					<left>-462</left>
+					<control type="grouplist">
+						<posx>0</posx>
+						<posy>0</posy>
+						<control type="group">
+							<posx>0</posx>
+							<posy>0</posy>
+							<include>KodiQ-GroupListSystemStatsLayout</include>
+						</control>
+						
+						<control type="group">
+							<posx>0</posx>
+							<posy>0</posy>
+							<include>KodiQ-SystemInfoHighlightLayout</include>
+						</control>
+						
+					</control>
+					
+				</control> -->
+			</control>
+<!--======================================================================Main Menu========================================================================-->
+			<control type="group">
+				<depth>DepthContentPanel</depth>
+				<include>OpenClose_Left</include>
+				<include content="ContentPanel">
+					<param name="width" value="522" />
+				</include>
+				
+				<control type="fixedlist" id="9000">
+					<left>-26</left>
+					<top>364</top>
+					<width>462</width>
+					<height>720</height>
+					<focusposition>1</focusposition>
+					<onfocus>ClearProperty(listposition,home)</onfocus>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<onup>700</onup>
+					<ondown>700</ondown>					
+					<focusedlayout height="95">					
+						<control type="group">
+							<control type="image">
+								<left>88</left>
+								<width>368</width>
+								<height>70</height>
+								<top>12</top>
+								<colordiffuse></colordiffuse>
+								<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>
+							<control type="image">
+								<left>82</left>
+								<width>380</width>
+								<height>82</height>
+								<top>6</top>
+								<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>							
+						<include>KodiQ-HomeMenu_SlidingGlow</include>						
+						</control>						
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>MainMenu_Focused</font>
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>						
+					</focusedlayout>					
+					<itemlayout height="95">
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>MainMenu_Layout</font>
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</itemlayout>	
+			<description>------------------ Buttons/Items ------------------</description>
+			        <content>
+						<item id="">
+							<label>Home</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id">youtube</property>
+						</item>	                    
+						<item id="">
+							<label>Trending</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						<item id="">
+							<label>Subscriptions</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						
+						<item id="">
+							<label>Library</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						<item id="">
+							<label>History</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						<item id="">
+							<label>Watch Later</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						<item id="">
+							<label>Purchases</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+						<item id="">
+							<label>PlayLists</label>
+							<property name="menu_id">$NUMBER[]</property>
+							<onclick>ActivateWindow()</onclick>
+							<property name="id"></property>
+						</item>
+					</content>
+				</control>
+				
+			</control>
+			
+			<include>BottomBar</include>
+			<!-- <include>KodiQ_MediaFlags</include> -->
+			
+			<include content="TopBar">
+				<param name="breadcrumbs_label" value="" />
+			</include>
+			
+		</control>
+	</controls>
+</window>

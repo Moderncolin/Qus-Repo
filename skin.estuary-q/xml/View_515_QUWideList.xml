@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View_515_WideList">
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<!-- <visible>Control.IsVisible(55)</visible> -->
+			<include>Visible_Right</include>			
+			<control type="fixedlist" id="515">
+				<left>594</left>
+				<top>list_y_offset</top>
+				<bottom>list_y_offset</bottom>
+				<right>0</right>
+				<scrolltime tween="cubic" easing="out">500</scrolltime>
+				<orientation>vertical</orientation>
+				<pagecontrol>531</pagecontrol>
+				<movement>5</movement>
+				<focusposition>6</focusposition>
+				<onleft>9000</onleft>
+				<onright>531</onright>
+				<onup>55</onup>
+				<ondown>55</ondown>
+				<viewtype label="QUWidelist">quwidelist</viewtype>
+<description>--------------------------------------------------------------</description>
+	            <itemlayout height="list_item_height" condition="Container.Plugin(plugin.video.youtube)">
+					<control type="image">
+						<left>35</left>
+						<centertop>50%</centertop>
+						<width>32</width>
+						<height>32</height>
+						<texture colordiffuse="grey">$VAR[ListWatchedIconVar]</texture>
+					</control>
+					<control type="label">
+						<left>105</left>
+						<top>0</top>
+						<bottom>0</bottom>
+						<right>40</right>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>
+					<control type="label">
+						<left>105</left>
+						<top>0</top>
+						<bottom>0</bottom>
+						<right>40</right>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$VAR[ListLabel2Var]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>					
+					<control type="group">				
+						<control type="image">
+							<posx>-460</posx>
+							<posy>0</posy>
+							<width>1020</width>
+							<height>3</height>
+							<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+						</control>
+					</control>					
+				</itemlayout>
+				<focusedlayout height="list_item_height" condition="Container.Plugin(plugin.video.youtube)">
+					<control type="image">
+						<left>0</left>
+						<right>0</right>
+						<bottom>0</bottom>
+						<texture colordiffuse="button_focus">lists/focus.png</texture>
+						<visible>Control.HasFocus(55)</visible>
+					</control>
+					<control type="image">
+						<left>35</left>
+						<centertop>50%</centertop>
+						<width>32</width>
+						<height>32</height>
+						<texture>$VAR[ListWatchedIconVar]</texture>
+					</control>
+					<control type="label">
+					    <top>0</top>
+						<bottom>0</bottom>
+						<left>105</left>						
+						<right>40</right>
+						<scroll>true</scroll>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>
+					<control type="label">
+					    <top>0</top>
+						<bottom>0</bottom>
+						<left>105</left>						
+						<right>40</right>
+						<align>right</align>
+						<label>$VAR[ListLabel2Var]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>					
+					<control type="group">				
+						<control type="image">
+							<posx>-460</posx>
+							<posy>0</posy>
+							<width>1020</width>
+							<height>3</height>
+							<texture>special://skin/extras/PVR_Q/SystemSettings/shadedline.png</texture>
+						</control>
+					</control>				
+				</focusedlayout>
+			</control>	
+		</control>
+	</include>
+	
+</includes>

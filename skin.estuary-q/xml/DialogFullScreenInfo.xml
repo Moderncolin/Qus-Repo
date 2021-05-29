@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1800">
+	<depth>DepthOSD</depth>
+	<defaultcontrol always="true">5553</defaultcontrol>    
+	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Mpaa(usa)],home)</onload>
+	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Art(fanart)],home)</onload>
+	<onunload>ClearProperty(infobackground,home)</onunload>
+		
+	<controls>
+	<!-- <include>MediaFlags</include> -->
+<!--========================================================-->
+    <description>Other information dialog is in DialogSeekBar.xml</description>
+<!--=================================================================-->
+		<control type="group" id="1515">
+		    <include>Animation_BottomSlide</include>
+			<bottom>0</bottom>
+			<height>230</height>
+			
+			<!--<visible>!Window.IsVisible(playerprocessinfo)</visible>-->
+			<animation effect="fade" time="200">VisibleChange</animation>
+			<control type="group">
+				<animation effect="slide" end="0,-80" time="150" condition="PVR.IsTimeShift">conditional</animation>
+<!--===================================Full screen logo bottom left=======================================-->
+				<!--<control type="image">
+					<depth>DepthOSD+</depth>
+					<left>10</left>
+					<top>-490</top>
+					<width>400</width>
+					<height>600</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="DefaultVideo.png" background="true">$VAR[NowPlayingPosterVar]</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<include>OpenClose_Left</include>
+				</control>-->
+				<control type="image">
+					<depth>DepthOSD+</depth>
+					<left>10</left>
+					<top>-490</top>
+					<width>400</width>
+					<height>600</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="DefaultVideo.png" background="true">$VAR[NowPlayingPosterVar]</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<include>OpenClose_Left</include>
+				</control>
+<!--=========================================Full screen plot and info=====================================-->
+				<control type="group">
+					<control type="image">
+						<left>0</left>
+						<bottom>0</bottom>
+						<right>20</right>
+						<height>300</height>
+						<width>100%</width>
+						<texture>special://skin/extras/PVR_Q/FullscreenInfo/PVR_Plot_Black_Border.png</texture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<bottom>300</bottom>
+						<right>20</right>
+						<height>10</height>
+						<width>100%</width>
+						<texture>special://skin/extras/PVR_Q/FullscreenInfo/PVR_Plot_White_Line.png</texture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>330</left>
+						<bottom>28</bottom>
+						<right>20</right>
+						<height>260</height>
+						<width>63%</width>
+						<texture>special://skin/extras/PVR_Q/FullscreenInfo/PVR_Plot_Inner_Box.png</texture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<bottom>310</bottom>
+						<right>20</right>
+						<height>2</height>
+						<width>100%</width>
+						<texture>special://skin/extras/PVR_Q/FullscreenInfo/PVR_Plot_Shaded_Line.png</texture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<bottom>307</bottom>
+						<right>20</right>
+						<height>1</height>
+						<width>100%</width>
+						<texture>special://skin/extras/PVR_Q/FullscreenInfo/PVR_Plot_Black_Thin_Line.png</texture>
+						<bordersize>0</bordersize>
+					</control>
+					
+<!--============================Now playing bottom right PVR full screen===============================================-->
+					<control type="group">			    
+                        <right>0</right>
+				        <width>0</width>
+						<height>0</height>
+				        <bottom>298</bottom>
+				        <align>right</align>
+				        <aligny>center</aligny>
+				        <itemgap>10</itemgap>
+				        <include content="TopBar">
+				            <param name="breadcrumbs_label" value="$INFO[Control.GetLabel(29), - ]" />
+			            </include>
+			        </control>					
+				</control>
+			</control>
+<!--=========================================================================-->
+			
+			<control type="group">
+			    <posy>35</posy>
+			    <posx>275</posx>
+				<width>24</width>
+				<height>14</height>
+				<control type="button">				    
+				    <visible>true</visible>
+					<aspectratio align="left">keep</aspectratio>
+				    <texturefocus colordiffuse="FFFFFFFF">special://skin/extras/PVR_Q/FullscreenInfo/ArrowUpQ.png</texturefocus>
+				    <texturenofocus colordiffuse="FFFFFFFF">special://skin/extras/PVR_Q/FullscreenInfo/ArrowUpQ.png</texturenofocus>
+				    <wrapmultiline>true</wrapmultiline>
+				    <textcolor>FFFFFFFF</textcolor>
+				    <focusedcolor>FFFFFFFF</focusedcolor>
+				    <disabledcolor>FFFFFFFF</disabledcolor>
+				    <invalidcolor>FFFFFFFF</invalidcolor>
+				    <align></align>
+				    <aligny></aligny>
+				    <textoffsetx></textoffsetx>
+				    <textoffsety></textoffsety>
+				    <pulseonselect></pulseonselect>
+				    <onclick>up</onclick>
+			    </control>
+			</control>
+
+            <control type="group">
+			    <posy>103</posy>
+			    <posx>275</posx>
+				<width>24</width>
+				<height>14</height>
+				<control type="button">				    
+				    <visible>true</visible>
+					<aspectratio align="left">keep</aspectratio>
+				    <texturefocus colordiffuse="FFFFFFFF">special://skin/extras/PVR_Q/FullscreenInfo/ArrowDownQ.png</texturefocus>
+				    <texturenofocus colordiffuse="FFFFFFFF">special://skin/extras/PVR_Q/FullscreenInfo/ArrowDownQ.png</texturenofocus>
+				    <wrapmultiline>true</wrapmultiline>
+				    <textcolor>FFFFFFFF</textcolor>
+				    <focusedcolor>FFFFFFFF</focusedcolor>
+				    <disabledcolor>FFFFFFFF</disabledcolor>
+				    <invalidcolor>FFFFFFFF</invalidcolor>
+				    <align></align>
+				    <aligny></aligny>
+				    <textoffsetx></textoffsetx>
+				    <textoffsety></textoffsety>
+				    <pulseonselect></pulseonselect>
+				    <onclick>down</onclick>
+			    </control>
+			</control>
+
+            <control type="label">
+				<posy>64</posy>
+			    <posx>244</posx>
+				<width>410</width>
+			    <height>200</height>
+				<align>right</align>
+				<aspectratio>scale</aspectratio>
+				<shadowcolor>black</shadowcolor>
+				<font>KodiQ-Regular-Channel-Name</font>
+				<label>$INFO[VideoPlayer.ChannelName(short)]</label>
+			</control>
+			
+			<control type="group">			    	        
+				<control type="label">
+				    <right>1608</right>
+				    <width>800</width>
+				    <bottom>28</bottom>
+				    <height>25</height>
+				    <align>right</align>
+				    <aligny>center</aligny>
+				    <visible>VideoPlayer.HasEpg</visible>
+				    <font>Rounded_Mplus_1C_Medium_Time</font>
+				    <label>$INFO[System.Date(DDD)], [LOWERCASE]$INFO[System.Time][/LOWERCASE]</label>
+			    </control>				
+			</control>
+<!--======================================pvr thumb image=============================================-->
+            <control type="group" id="4030">
+			    <posy>64</posy>
+			    <posx>244</posx>
+				<control type="group" id="4001">
+					<!-- <control type="image">
+						<bottom>74</bottom>
+						<left>102</left>					
+						<width>410</width>
+						<height>200</height>
+						<aspectratio align="">strech</aspectratio>
+						<texture background="true" fallback="DefaultVideo.png">http://localhost:52307/getthumb&amp;title=$ESCINFO[VideoPlayer.Title]&amp;year=$ESCINFO[VideoPlayer.Year]</texture>					
+						<fadetime>200</fadetime>
+					</control> -->
+					
+                    <control type="image" id="4002">
+						<bottom>74</bottom>
+						<left>102</left>					
+						<width>410</width>
+						<height>200</height>
+						<aspectratio align="">strech</aspectratio>
+						<texture background="true" fallback="DefaultVideo.png">http://localhost:52307/getthumb&amp;title=$ESCINFO[VideoPlayer.Title]&amp;year=$ESCINFO[VideoPlayer.Year]</texture>					
+						<fadetime>200</fadetime>
+					</control>
+
+					<control type="image" id="4003">
+						<bottom>74</bottom>
+						<right>28</right>					
+						<width>340</width>
+						<height>178</height>
+						<aspectratio align="">strech</aspectratio>
+						<texture background="true" fallback="DefaultVideo.png">http://localhost:52307/getthumb&amp;title=$ESCINFO[VideoPlayer.NextTitle]&amp;year=$ESCINFO[VideoPlayer.Year]</texture>					
+						<fadetime>200</fadetime>
+					</control>
+				</control>				
+			</control>
+			
+			<control type="grouplist" id="1602">
+				<orientation>vertical</orientation>
+				<left>755</left>
+				<top>488</top>
+				<height>377</height>
+				<itemgap>-8</itemgap>
+				<ondown>5000</ondown>
+				<onup>50</onup>
+				<onright>140</onright>
+				<onleft>140</onleft>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="$INFO[ListItem.Director,[COLOR button_focus]$LOCALIZE[20339]: [/COLOR]]" />
+					<param name="altlabel" value="$INFO[ListItem.Director,$LOCALIZE[20339]: ]" />
+					<param name="onclick_condition" value="System.AddonIsEnabled(script.embuary.info)" />
+					<param name="onclick" value="RunScript(script.embuary.info,call=person,query='$ESCINFO[ListItem.Director]')" />
+					<param name="altclick_condition" value="System.AddonIsEnabled(script.embuary.info)" />
+					<param name="altclick" value="RunScript(script.embuary.info,call=person,query='$ESCINFO[ListItem.Director]')" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Director)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="$INFO[ListItem.Writer,[COLOR button_focus]$LOCALIZE[20417]: [/COLOR]]" />
+					<param name="altlabel" value="$INFO[ListItem.Writer,$LOCALIZE[20417]: ]" />
+					<param name="onclick_condition" value="System.AddonIsEnabled(script.embuary.info)" />
+					<param name="onclick" value="RunScript(script.embuary.info,call=person,query='$ESCINFO[ListItem.Writer]')" />
+					<param name="altclick_condition" value="System.AddonIsEnabled(script.embuary.info)" />
+					<param name="altclick" value="RunScript(script.embuary.info,call=person,query='$ESCINFO[ListItem.Writer]')" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Writer)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[563]: [/COLOR]$INFO[ListItem.RatingAndVotes]" />
+					<param name="altlabel" value="$LOCALIZE[563]: $INFO[ListItem.RatingAndVotes]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.RatingAndVotes)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[515]: [/COLOR]$INFO[ListItem.Genre]" />
+					<param name="altlabel" value="$LOCALIZE[515]: $INFO[ListItem.Genre]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Genre) + [String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,movie)]" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[21875]: [/COLOR]$INFO[ListItem.Country]" />
+					<param name="altlabel" value="$LOCALIZE[21875]: $INFO[ListItem.Country]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Country)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[29909]: [/COLOR]$INFO[ListItem.Studio]" />
+					<param name="altlabel" value="$LOCALIZE[29909]: $INFO[ListItem.Studio]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Studio)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="154" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[20416]: [/COLOR]$INFO[ListItem.Premiered]" />
+					<param name="altlabel" value="$LOCALIZE[20416]: $INFO[ListItem.Premiered]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Premiered)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[31048]: [/COLOR]$INFO[ListItem.Season,, $LOCALIZE[36905]]$INFO[ListItem.Episode, (, $LOCALIZE[20453])]" />
+					<param name="altlabel" value="$LOCALIZE[31048]: $INFO[ListItem.Season,, $LOCALIZE[36905]]$INFO[ListItem.Episode, (, $LOCALIZE[20453])]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Season) + !String.IsEqual(ListItem.DBType,episode)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="156" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[31017]: [/COLOR]$INFO[ListItem.Mpaa]" />
+					<param name="altlabel" value="$LOCALIZE[31017]: $INFO[ListItem.Mpaa]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Mpaa)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[20457]: [/COLOR]$INFO[ListItem.Set]" />
+					<param name="altlabel" value="$LOCALIZE[20457]: $INFO[ListItem.Set]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Set)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[20459]: [/COLOR]$INFO[ListItem.Tag]" />
+					<param name="altlabel" value="$LOCALIZE[20459]: $INFO[ListItem.Tag]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Tag)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[126]: [/COLOR]$INFO[ListItem.Status]" />
+					<param name="altlabel" value="$LOCALIZE[126]: $INFO[ListItem.Status]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.Status)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="161" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[570]: [/COLOR]$INFO[ListItem.DateAdded]" />
+					<param name="altlabel" value="$LOCALIZE[570]: $INFO[ListItem.DateAdded]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.DateAdded) + [String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,video)]" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="163" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[576]: [/COLOR]$INFO[ListItem.PlayCount]" />
+					<param name="altlabel" value="$LOCALIZE[576]: $INFO[ListItem.PlayCount]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.PlayCount)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="164" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[568]: [/COLOR]$INFO[ListItem.LastPlayed]" />
+					<param name="altlabel" value="$LOCALIZE[568]: $INFO[ListItem.LastPlayed]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.LastPlayed)" />
+				</include>
+				<include content="InfoDialogMetadata">
+					<param name="control_id" value="165" />
+					<param name="label" value="[COLOR button_focus]$LOCALIZE[564]: [/COLOR]$INFO[ListItem.DBType]" />
+					<param name="altlabel" value="$LOCALIZE[564]: $INFO[ListItem.DBType]" />
+					<param name="visible" value="!String.IsEmpty(ListItem.DBType)" />
+				</include>
+			</control>
+<!--================================Video resolution image when in fullscreen info SD/HD========================================-->
+			<control type="grouplist" id="4540">			    
+                <posy>152</posy>
+			    <posx>654</posx>
+				<itemgap>4</itemgap>
+				<aspectratio>scale</aspectratio>
+				<orientation>horizontal</orientation>
+				<!-- <include>MediaFlags</include> -->
+				<visible>!Player.ChannelPreviewActive</visible>				
+				<include content="MediaFlag">
+					<param name="texture" value="$VAR[VideoPlayerResolutionFlagVar]" />
+					<param name="width" value="49" />
+				</include>
+				
+				<include content="MediaFlag">
+					<param name="texture" value="$ESCINFO[ListItem.Mpaa,resource://resource.images.classificationicons.colour/,.png]" />
+					<param name="width" value="49" />
+				</include>
+				
+				<control type="group" id="4552">
+				    <posy>0</posy>
+				    <posx>0</posx>
+					<control type="image">
+						<posy>0</posy>
+						<posx>0</posx>
+						<width>49</width>
+						<height>32</height>
+						<texture background="true" fallback="DefaultVideo.png">$ESCINFO[ListItem.Property(Mpaa)]</texture>					
+					</control>
+				</control>
+			</control>
+			<control type="group">
+				<!-- <visible>$EXP[isnotEmptyDBID]</visible> -->
+				<control type="image" id="4550">
+					<left>36</left>
+					<top>0</top>
+					<width>64</width>
+					<height>64</height>
+					<aligny>bottom</aligny>
+					<texture background="true" fallback="DefaultVideo.png">$ESCINFO[ListItem.Mpaa(imbd),resource://resource.images.classificationicons.colour/,.png]</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+			</control>
+<!--===================================================================================-->
+			
+            <!-- <control type="grouplist">
+                <posy>-500</posy>
+			    <posx>200</posx>		   
+     			<include>ChannelManagerList</include>
+			</control> -->
+<!--====================================================-->
+            <include>KodiQ_FullscreenInfoBar</include>
+			<!-- <include>KodiQ-VideosInfoBar</include>
+			<include>KodiQ_Tmdb_Info</include>						 -->
+            <!-- <control type="group">
+				<posx>0</posx> 
+				<posy>-6</posy>
+				<include>KodiQ-VideosInfoBar</include>
+			</control>
+			<control type="group">
+				<posx>0</posx> 
+				<posy>0</posy>
+			</control> -->
+		</control>
+	</controls>
+</window>

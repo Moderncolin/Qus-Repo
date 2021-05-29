@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="8892">
+	<defaultcontrol>9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	
+	<controls>
+	    <setting id="skinhelper.enablepvrthumbs" type="bool">true</setting>
+		
+		<include>DefaultBackground</include>
+		
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="400" reversible="true" condition="!Window.Previous(SettingsCategory.xml)">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" reversible="true" condition="!Window.Next(SettingsCategory.xml)">WindowClose</animation>
+			<imagepath colordiffuse="35FFFFFF">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</imagepath>
+			<visible>!Player.HasMedia + !String.IsEmpty(Skin.String(HomeFanart.path))</visible>
+		</control>
+		
+<!-- =============================================================== -->
+		<!-- ==============================Main video button=================================== -->
+		<control type="group" id="11000">
+			<visible>String.IsEqual(Container(9000).ListItem.Property(id),categories)</visible>
+			<include content="Visible_Right_Delayed">
+				<param name="id" value="categories"/>
+			</include>
+			<control type="grouplist" id="11001">
+			
+			   <!--  <include>MediaMenuItemsCommon</include> -->
+				
+				<include>WidgetGroupListCommon</include>
+				<pagecontrol>11010</pagecontrol>
+				<include content="KodiQ_WidgetListTv">
+					<param name="content_path" value="library://video/"/>
+					<param name="widget_header" value="$LOCALIZE[31148]"/>
+					<param name="widget_target" value="videos"/>
+					<param name="list_id" value="11900"/>
+				</include>
+			</control>
+			<include content="ImageWidget">
+				<param name="text_label" value="$LOCALIZE[31105]" />
+				<param name="button_label" value="$LOCALIZE[31110]" />
+				<param name="button_onclick" value="ActivateWindow(videos,root)"/>
+				<param name="button_id" value="11300"/>
+				<param name="visible" value="!Integer.IsGreater(Container(11001).NumItems,0)"/>
+				<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoVideosButton)"/>
+			</include>
+			<!-- <include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
+				<param name="scrollbar_id" value="11010"/>
+			</include> -->
+		</control>
+		<!-- ==============================Main video button=================================== -->
+		<control type="group" id="11000">
+			<visible>String.IsEqual(Container(9000).ListItem.Property(id),mediasources)</visible>
+			<include content="Visible_Right_Delayed">
+				<param name="id" value="mediasources"/>
+			</include>
+			<control type="grouplist" id="11001">
+			
+			   <!--  <include>MediaMenuItemsCommon</include> -->
+				
+				<include>WidgetGroupListCommon</include>
+				<pagecontrol>11010</pagecontrol>
+				<include content="KodiQ_WidgetListTv">
+					<param name="content_path" value="sources://video/"/>
+					<param name="widget_header" value="$LOCALIZE[20094]"/>
+					<param name="widget_target" value="videos"/>
+					<param name="list_id" value="11100"/>
+				</include>
+			</control>
+			<include content="ImageWidget">
+				<param name="text_label" value="$LOCALIZE[31105]" />
+				<param name="button_label" value="$LOCALIZE[31110]" />
+				<param name="button_onclick" value="ActivateWindow(videos,root)"/>
+				<param name="button_id" value="11300"/>
+				<param name="visible" value="!Integer.IsGreater(Container(11001).NumItems,0)"/>
+				<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoVideosButton)"/>
+			</include>
+			<!-- <include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
+				<param name="scrollbar_id" value="11010"/>
+			</include> -->
+		</control>
+		<!-- ==============================Main video button=================================== -->
+		<control type="group" id="11000">
+			<visible>String.IsEqual(Container(9000).ListItem.Property(id),playlist)</visible>
+			<include content="Visible_Right_Delayed">
+				<param name="id" value="playlist"/>
+			</include>
+			<control type="grouplist" id="11001">
+			
+			   <!--  <include>MediaMenuItemsCommon</include> -->
+				
+				<include>WidgetGroupListCommon</include>
+				<pagecontrol>11010</pagecontrol>
+				<include content="KodiQ_WidgetListTv">
+					<param name="content_path" value="special://videoplaylists/"/>
+					<param name="widget_header" value="$LOCALIZE[136]"/>
+					<param name="widget_target" value="videos"/>
+					<param name="list_id" value="11200"/>
+					<param name="icon" value="DefaultPlaylist.png"/>
+				</include>
+			</control>
+			<include content="ImageWidget">
+				<param name="text_label" value="$LOCALIZE[31105]" />
+				<param name="button_label" value="$LOCALIZE[31110]" />
+				<param name="button_onclick" value="ActivateWindow(videos,root)"/>
+				<param name="button_id" value="11300"/>
+				<param name="visible" value="!Integer.IsGreater(Container(11001).NumItems,0)"/>
+				<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoVideosButton)"/>
+			</include>
+			<!-- <include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
+				<param name="scrollbar_id" value="11010"/>
+			</include> -->
+		</control>
+<!--======================The title of the menu,,value="YourTitle"====================================-->
+        <control type="group">
+		    <left>69</left>
+			<width>900</width>
+			<top>376</top>
+			<height>100</height>
+		    <include content="MenuTitle">
+			    <param name="breadcrumbs_label" value="Videos" />
+     		</include>
+		</control>
+	<!--=============================================================-->
+		<control type="group">
+		    <control type="fixedlist" id="9000">
+			    <include>OpenClose_FadeSlide_Left</include>
+			    <!--<include>VisibleFadeEffect</include>-->
+				<pagecontrol>0</pagecontrol>
+				<left>-26</left>
+				<top>430</top>
+				<width>462</width>
+				<height>710</height>
+				<movement>0</movement>
+				<focusposition>1</focusposition>
+				<onfocus>ClearProperty(listposition,home)</onfocus>
+				<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+				<onup>700</onup>
+				<ondown>700</ondown>
+				<onleft>13500</onleft>
+				<scrolltime>0</scrolltime>
+				<scrollspeed>0</scrollspeed>
+				
+			    <itemlayout height="95">
+				    <control type="image">
+						<left>-3</left>
+						<top>1</top>
+						<width>95</width>
+						<height>95</height>
+						<texture colordiffuse="44FFFFFF">$INFO[ListItem.Art(thumb)]</texture>
+					</control>
+					<control type="label">
+						<left>104</left>
+						<top>0</top>
+						<height>95</height>
+						<width>560</width>
+						<aligny>center</aligny>
+						<font>Rounded_Mplus_1C</font>        <!--======To make the main menu text smaller when it is not highlighed Check Fonts.xml======-->
+						<label>$INFO[ListItem.Label]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>
+			    </itemlayout>
+<!--===========================================================-->
+			    <focusedlayout height="95">
+				    <control type="group">
+					    <depth>DepthContentPopout</depth>
+					    <control type="group">
+							<control type="image">
+								<left>88</left>
+								<width>368</width>
+								<height>70</height>
+								<top>12</top>
+								<colordiffuse></colordiffuse>
+								<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>							
+							<control type="image">
+								<left>82</left>
+								<width>380</width>
+								<height>82</height>
+								<top>6</top>
+								<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>
+						    <include>KodiQ-HomeMenu_SlidingGlow</include>
+						</control>
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>Rounded_Mplus_1C_Bold</font>        <!--======To make the main menu text bigger when it is highlighed Check Fonts.xml======-->
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+				    </control>					
+			    </focusedlayout>
+<!--=========================Contents in Settings button=================================-->
+                <content>
+					<item>
+					    <label>Categories</label>
+					    <onclick>ActivateWindowAndFocus(videos)</onclick>
+                        <property name="menu_id"></property>
+						<property name="id">categories</property>						
+                        <!-- <label>$LOCALIZE[138]</label>
+						<onclick>ActivateWindow(systeminfo)</onclick> -->
+				    </item>
+					
+					<item>
+					    <label>Media Sources</label>
+					    <onclick>ActivateWindow(mediasource)</onclick>
+                        <property name="menu_id"></property>
+						<property name="id">mediasources</property>
+				    </item>
+					
+                    <item>
+					    <label>Playlists</label>
+					    <onclick>ActivateWindow(playlist)</onclick>
+                        <property name="menu_id"></property>
+						<property name="id">playlist</property>
+				    </item>				    
+			    </content>
+
+		    </control>
+			
+			<!-- <control type="list" id="9000">
+				<left>0</left>
+				<width>100%</width>
+				<top>120</top>
+				<height>300</height>
+				<onup>noop</onup>
+				<ondown>Control.SetFocus(9001,$INFO[Container(9000).Position],absolute)</ondown>
+				<include>SettingsPanel</include>
+				<content>
+				
+					<item>
+						<label>$LOCALIZE[10003]</label>
+						<onclick>ActivateWindow(filemanager)</onclick>
+						<icon>icons/settings/filemanager.png</icon>
+					</item>
+					<item>
+						<label>$LOCALIZE[24001]</label>
+						<onclick>ActivateWindow(addonbrowser)</onclick>
+						<icon>icons/settings/addons.png</icon>
+					</item>
+					
+					<item>
+						<label>$LOCALIZE[138]</label>
+						<onclick>ActivateWindow(systeminfo)</onclick>
+						<icon>icons/settings/sysinfo.png</icon>
+					</item>
+					
+					<item>
+						<label>$LOCALIZE[31067]</label>
+						<onclick>ActivateWindow(eventlog)</onclick>
+						<icon>icons/settings/eventlog.png</icon>
+					</item>
+					
+				</content>
+			</control> -->
+			
+		</control>
+
+        <control type="group">
+		    
+		</control>
+		
+		<!--<include content="TopBar">
+			<param name="breadcrumbs_label" value="$LOCALIZE[13000]" />
+		</include>-->
+	</controls>
+</window>

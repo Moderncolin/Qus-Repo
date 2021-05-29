@@ -1,0 +1,1781 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<includes>
+	<include name="View_507_QInfoWall">
+		<!-- <include>KodiQ-VideosInfoBar</include> -->
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<left>-62</left>
+			<top>0</top>
+			<visible>Control.IsVisible(507)</visible>
+			<include>Visible_Right</include>
+
+			<control type="panel" id="507">
+				<left>460</left>
+				<bottom>0</bottom>
+				<right>15</right>
+				<height>64%</height>
+				<!-- <onleft>9000</onleft> -->
+				<!-- <onright>531</onright> -->
+				<onup condition="Integer.IsGreater(Container.NumPages,1)">507</onup>
+				<onup condition="!Integer.IsGreater(Container.NumPages,1)">9000</onup>
+				<ondown>54</ondown>
+				<viewtype label="QInfoWall">q icon</viewtype>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>531</pagecontrol>
+				<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(sets) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(images) | Container.Content(videos) | Container.Content(games)</visible>
+				<!-- =====================This is the movie layout================== -->
+				<itemlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+					<control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="KodiQ-VerticalMoviesLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+					<control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-VerticalFocusedMoviesLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<!-- =====================This is the episode layout================== -->
+				<itemlayout height="300" width="300" condition="Container.Content(episodes) | Container.Content(videos) | Container.Content(musicvideos)">
+					<control type="group">
+						<left>64</left>
+						<top>110</top>
+						<include content="KodiQ-HorizontalEpisodesLayout">
+							<param name="focused" value="false" />
+							<param name="thumb_label" value="$INFO[ListItem.Label2]" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="300" width="300" condition="Container.Content(episodes) | Container.Content(videos) | Container.Content(musicvideos)">
+					<control type="group">
+						<left>64</left>
+						<top>110</top>
+						<include content="KodiQ-HorizontalEpisodesFocusedLayout">
+							<param name="focused" value="true" />
+							<param name="thumb_label" value="$INFO[ListItem.Label2]" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<!-- =====================This is the music layout================== -->
+				<itemlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+					<control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="KodiQ-VerticalMusicLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+					<control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-VerticalFocusedMusicLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<!-- =====================This is the picture layout================== -->
+				<itemlayout height="400" width="378" condition="Container.Content(images)">
+					<control type="group">
+						<left>0</left>
+						<top>150</top>
+						<include>InfoWallPictureLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="400" width="378" condition="Container.Content(images)">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>0</left>
+						<top>150</top>
+						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="180,330">Focus</animation>
+						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="180,330">UnFocus</animation>
+						<include content="InfoWallPictureLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+			</control>
+		</control>
+	</include>
+
+	<description>-----------------vV  Vv----------------</description>
+
+	<include name="KodiQ-FixedListVerticalLiveTv">
+		<definition>
+
+			<include content="KodiQ-MovieRowLabel">
+				<param name="label" value="         $PARAM[widget_header]" />
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="180" />
+				<param name="posx" value="10" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1446</width>
+				<height>426</height>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<include content="KodiQ-Cinema-RowOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<description>vV----Image when it is not foucused,Main info is in QWindowsLayouts----Vv</description>
+				<itemlayout width="266" height="0">
+					<control type="group">
+						<left>0</left>
+						<top>62</top>
+						<include content="KodiQ-VerticalLiveTvLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<description>vV----Image when foucused,Main info is in QWindowsLayouts----Vv</description>
+				<focusedlayout width="266" height="0">
+					<control type="group">
+						<left>-68</left>
+						<top>52</top>
+						<include content="KodiQ-VerticalLiveTvFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="auto">$PARAM[content_path]</content>
+
+			</control>
+
+		</definition>
+	</include>
+
+	<description>-----------------vV  Vv----------------</description>
+	<!--===============================KodiQ FixedList Episodes Main Window (CatchUp Tv Section). In (itemlayout/focusedlayout) are the group names of the windows layout the groups are in.>(QWindowsLayouts.xml)===============================================-->
+	<include name="KodiQ-FixedListHorizontalEpisodes">
+		<param name="main_label">$INFO[ListItem.TVShowTitle] $INFO[ListItem.Season,,x]$INFO[ListItem.Episode] $INFO[ListItem.Title]</param>
+		<param name="sub_label"></param>
+		<param name="thumb_label"></param>
+		<param name="thumb_label"></param>
+		<param name="sortby"></param>
+		<param name="visible">True</param>
+		<param name="sortorder">ascending</param>
+		<param name="widget_limit">50</param>
+		<definition>
+
+			<!-- <include content="KodiQ-CategoriesRowLabel">
+				<param name="label" value="         $PARAM[widget_header]"/>         
+				<param name="list_id" value="$PARAM[list_id]"/>
+			</include> -->
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="200" />
+			</include>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>-16</posx>
+				<posy>0</posy>
+				<width></width>
+				<height>550</height>
+				<include content="WidgetListCommon">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+				<visible>$PARAM[visible]</visible>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<itemlayout width="438" height="292">
+					<control type="group">
+						<left>70</left>
+						<top>5</top>
+						<include content="KodiQ-HorizontalEpisodesLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+
+				<focusedlayout width="438" height="292">
+					<control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-HorizontalEpisodesFocusedLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[widget_limit]">$PARAM[content_path]</content>
+			</control>
+		</definition>
+	</include>
+	<!-- ============================================================================= -->
+	<!--===============================KodiQ Cinema Movies (Focused) Layout for (Horizontal) view============================================-->
+	
+	<!--===============================KodiQ Cinema section===============================================-->
+	<include name="KodiQ-FixedListVerticalMovies">
+		<definition>
+
+			<!-- <control type="fixedlist" id="$PARAM[list_id]">
+			    <posx>-59</posx>
+				<posy>0</posy>				
+				<width></width>
+				<height>580</height>				
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+			
+				<include content="WidgetListCommon">
+					<param name="list_id" value="$PARAM[list_id]"/>
+				</include>
+				
+				<description>vVmage when it is not foucused,Main info is in QWindowsLayoutsVv</description>				
+				<itemlayout width="266" height="0">
+					<control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="KodiQ-VerticalMoviesLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<description>vVImage when foucused,Main info is in QWindowsLayoutsVv</description>   
+				<focusedlayout width="266" height="0">				
+			        <control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="KodiQ-VerticalFocusedMoviesLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15">$PARAM[content_path]</content>
+			</control> -->
+			<description>----------------------vV VerticalMovies Layout Vv----------------------</description>
+			<!-- <control type="group">
+			    <posx>0</posx>
+				<posy>0</posy>
+				<include content="KodiQ-MovieRowLabel">
+					<param name="label" value="          $PARAM[widget_header]"/>         
+					<param name="list_id" value="$PARAM[list_id]"/>
+				</include>
+			</control> -->
+
+			<!-- <include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]"/>
+				<param name="posy" value="250"/>
+			</include> -->
+
+			<!-- <control type="fixedlist" id="$PARAM[list_id]">
+			    <posx>-59</posx>
+				<posy>50</posy>				
+				<width>0</width>
+				<height>380</height>				
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+			
+				<include content="KodiQ-Cinema-RowOrientation">
+					<param name="list_id" value="$PARAM[list_id]"/>
+				</include>
+				
+				<description>vVImage when it is not foucused,Main info is in QWindowsLayoutsVv</description>				
+				<itemlayout width="266" height="640">
+					<control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="KodiQ-VerticalMoviesLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<description>vVImage when foucused,Main info is in QWindowsLayoutsVv</description>   
+				<focusedlayout width="266" height="640">				
+			        <control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-VerticalFocusedMoviesLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15">$PARAM[content_path]</content>
+			</control> -->
+
+			<include content="KodiQ-MovieRowLabel">
+				<param name="label" value="         $PARAM[widget_header]" />
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="180" />
+				<param name="posx" value="10" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1446</width>
+				<height>426</height>
+
+				<!-- <pagecontrol>25</pagecontrol>
+				<scrolltime tween="sine" easing="out">200</scrolltime>
+				<autoscroll>false</autoscroll>
+				<focusposition>4</focusposition>
+				<movement>6</movement> -->
+
+				<!-- <scrolltime tween="cubic" easing="inout">1000</scrolltime> -->
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<include content="KodiQ-Cinema-RowOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<description>vV----Image when it is not foucused,Main info is in QWindowsLayouts----Vv</description>
+				<itemlayout width="266" height="0">
+					<control type="group">
+						<left>0</left>
+						<top>62</top>
+						<include content="KodiQ-VerticalMoviesLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<description>vV----Image when foucused,Main info is in QWindowsLayouts----Vv</description>
+				<focusedlayout width="266" height="0">
+					<control type="group">
+						<left>-68</left>
+						<top>52</top>
+						<include content="KodiQ-VerticalFocusedMoviesLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="auto">$PARAM[content_path]</content>
+
+			</control>
+
+		</definition>
+	</include>
+
+	<description>----------------------vV VerticalMusic Layout Vv----------------------</description>
+	<include name="KodiQ-VerticalFixedListMusicLayout">
+		<definition>
+
+			<include content="KodiQ-CategoriesRowLabel">
+				<param name="label" value="         $PARAM[widget_header]" />
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="180" />
+				<param name="posx" value="-10" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>22</posx>
+				<posy>380</posy>
+				<width>1444</width>
+				<height>700</height>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<include content="KodiQ-RowOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+				<description>vV----Image when it is not foucused,Main info is in QWindowsLayouts----Vv</description>
+				<itemlayout width="266" height="0">
+					<control type="group">
+						<left>0</left>
+						<top>110</top>
+						<include content="KodiQ-VerticalMusicLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<description>vV----Image when foucused,Main info is in QWindowsLayouts----Vv</description>
+				<focusedlayout width="266" height="0">
+					<control type="group">
+						<left>-68</left>
+						<top>100</top>
+						<include content="KodiQ-VerticalFocusedMusicLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15">$PARAM[content_path]</content>
+
+			</control>
+		</definition>
+	</include>
+	<!--===============================KodiQ FixedList Pictures Main Window (Pictures/Photos Section). In (itemlayout/focusedlayout) are the group names of the windows layout the groups are in.>(QWindowsLayouts.xml)===============================================-->
+	<include name="KodiQ-FixedListHorizontalPictures">
+		<param name="main_label">$INFO[ListItem.TVShowTitle] $INFO[ListItem.Season,,x]$INFO[ListItem.Episode] $INFO[ListItem.Title]</param>
+		<param name="sub_label"></param>
+		<param name="thumb_label"></param>
+		<param name="thumb_label"></param>
+		<param name="sortby"></param>
+		<param name="visible">True</param>
+		<param name="sortorder">ascending</param>
+		<param name="widget_limit">50</param>
+		<definition>
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="200" />
+			</include>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>-16</posx>
+				<posy>0</posy>
+				<width></width>
+				<height>550</height>
+				<include content="WidgetListCommon">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+				<visible>$PARAM[visible]</visible>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<itemlayout width="438" height="292">
+					<control type="group">
+						<left>70</left>
+						<top>5</top>
+						<include content="KodiQ-HorizontalPictureLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+
+				<focusedlayout width="438" height="292">
+					<control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-HorizontalPictureFocusedLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[widget_limit]">$PARAM[content_path]</content>
+			</control>
+		</definition>
+	</include>
+
+	<!--===============================KodiQ PanelList Categories Main Window (Categories Section). In (itemlayout/focusedlayout) are the group names of the windows layout the groups are in.>(QWindowsLayouts.xml)===============================================-->
+	<include name="KodiQ_PanelListHorizontalCategories">
+		<param name="item_limit">auto</param>
+		<param name="icon">$INFO[ListItem.Icon]</param>
+		<!-- <param name="icon_height">120</param> -->
+		<param name="pvr_submenu">false</param>
+		<param name="pvr_type">TV</param>
+		<param name="visible">true</param>
+
+
+		<definition>
+			<include content="CategoryLabel">
+				<param name="label">$PARAM[widget_header]</param>
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="visible" value="$PARAM[visible]" />
+			</include>
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="visible" value="$PARAM[visible]" />
+			</include>
+
+			<control type="panel" id="$PARAM[list_id]">
+				<left>0</left>
+				<top>110</top>
+				<right>0</right>
+				<height>290</height>
+				<include content="WidgetListCommon">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+				<visible>$PARAM[visible]</visible>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<itemlayout width="438" height="292">
+					<control type="group">
+						<left>70</left>
+						<top>5</top>
+						<include content="KodiQ-HorizontalCategoriesTestLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+
+				<focusedlayout width="438" height="292">
+					<control type="group">
+						<left>0</left>
+						<top>0</top>
+						<include content="KodiQ-HorizontalCategoriesTestFocusedLayout">
+							<param name="main_label" value="$PARAM[main_label]" />
+							<param name="sub_label" value="$PARAM[sub_label]" />
+							<param name="thumb_label" value="$PARAM[thumb_label]" />
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<include condition="!$PARAM[pvr_submenu]" content="KodiQ_SubmenuContent">
+					<param name="widget_target" value="$PARAM[widget_target]" />
+					<param name="item_limit" value="$PARAM[item_limit]" />
+					<param name="content_path" value="$PARAM[content_path]" />
+				</include>
+
+				<include condition="$PARAM[pvr_submenu]" content="KodiQ_PVRSubMenuContent">
+					<param name="pvr_type" value="$PARAM[pvr_type]" />
+				</include>
+
+			</control>
+
+		</definition>
+	</include>
+	<!-- =======================modified Snippitt========================== -->
+	<include name="KodiQ_SubmenuContent">
+		<content target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
+	</include>
+	<include name="KodiQ-VerticalFixedListCategoriesLayout">
+
+		<definition>
+			<!-- <include content="CategoryLabel">
+				<param name="label">$PARAM[widget_header]</param>
+				<param name="list_id" value="$PARAM[list_id]"/>
+			</include> -->
+
+			<include content="KodiQ-CategoriesRowLabel">
+				<param name="label">         $PARAM[widget_header]</param> <!-- I had to use a big space (9 spaces) coz i could not get name to move without the fixedlist moving -->
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>22</posx> <!--===================Use this to offset images inside layout==========================-->
+				<posy>380</posy>
+				<width>1444</width>
+				<height>700</height> <!--===============The Gap between each row inside layout======================================-->
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+
+				<include content="KodiQ-RowOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout width="266" height="0">
+					<control type="group">
+						<left>0</left>
+						<top>110</top>
+						<include content="KodiQ-VerticalCategoriesLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout width="266" height="0">
+					<control type="group">
+						<left>-68</left>
+						<top>100</top>
+						<include content="KodiQ-VerticalFocusedCategoriesLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="15">$PARAM[content_path]</content>
+			</control>
+		</definition>
+	</include>
+	<!-- ============================================================================================================================================================== -->
+	<!-- ============================================modified Snippitt======================================== -->
+	<include name="KodiQ_EpgGridLayout">
+
+		<definition>
+
+			<control type="epggrid" id="$PARAM[control_id]">
+				<left>474</left>
+				<top>-88</top>
+				<right>0</right>
+				<bottom>0</bottom>
+
+				<orientation>$PARAM[control_orientation]</orientation>
+				<pagecontrol>60</pagecontrol>
+
+				<timeblocks>30</timeblocks>
+				<rulerunit>6</rulerunit>
+
+				<onleft>11</onleft>
+				<onright>60</onright>
+
+				<onup>$PARAM[control_onupdown_id]</onup>
+				<ondown>$PARAM[control_onupdown_id]</ondown>
+				<!-- <viewtype label="$PARAM[viewtype_label]">list</viewtype> -->
+				<progresstexture border="5">PVR-EpgProgressIndicator.png</progresstexture>
+
+				<rulerlayout height="30" width="1400">
+					<control type="label">
+						<posx>30</posx>
+						<posy>-7</posy>
+						<font>Rounded_Mplus_1C_Medium_EPG_Date</font>
+						<textcolor>FFFFFFFF</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>[LOWERCASE]$INFO[ListItem.Label][/LOWERCASE]</label>
+						<textoffsetx>0</textoffsetx>
+					</control>
+				</rulerlayout>
+
+				<rulerdatelayout height="45" width="1700">
+					<!-- <control type="label">
+						<width>1700</width>
+						<height>45</height>
+						<font>font13</font>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>button_focus</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+					</control> -->
+				</rulerdatelayout>
+
+				<channellayout height="90" width="325">
+					<!--==Keep at 90===-->
+					<!--======================================PVR guide channel text left side===================================================-->
+					<control type="label" id="1">
+						<left>20</left>
+						<top>25</top>
+						<font>Rounded_Mplus_1C_PVRleft</font>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<align>left</align>
+						<shadowcolor>black</shadowcolor>
+						<texture border="0" fallback="DefaultFolder.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture>
+					</control>
+					<control type="image" id="2">
+						<width>100%</width>
+						<height>4</height>
+						<top>90</top>
+						<align>center</align>
+						<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+					</control>
+				</channellayout>
+
+				<focusedchannellayout height="90" width="325">
+					<!-- <control type="label">
+						<right>0</right>
+						<top>0</top>
+						<width>75</width>
+						<height>90</height>
+						<font>font12</font>
+						<label>$INFO[ListItem.ChannelNumber]</label>
+						<texture border="12" fallback="windows/pvr/epg-genres/192.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture>
+					</control> -->
+					<!--================================PVR guide channel highlight blue==============================================-->
+					<control type="image" id="2">
+						<top>5</top>
+						<left>1</left>
+						<width>100%</width>
+						<height>96%</height>
+						<texture>special://skin/extras/PVR_Q/TvGuide/channel_highlight.png</texture>
+						<texture border="12" colordiffuse="button_focus">windows/pvr/epg-genres/128.png</texture>
+					</control>
+					<control type="image" id="2">
+						<width>100%</width>
+						<height>4</height>
+						<top>90</top>
+						<texture>special://skin/extras/PVR_Q/TvGuide/shadedline.png</texture>
+					</control>
+					<!--==========================================Channel and program MenuSelect button in the EPG===============================-->
+					<control type="group">
+						<control type="image">
+							<left>0</left>
+							<width>100%</width>
+							<height>100%</height>
+							<top>0</top>
+							<bordertexture border="5">special://skin/extras/PVR_Q/TvGuide/PVR_Plot_Inner_Box.png</bordertexture>
+							<bordersize>5</bordersize>
+							<centerleft>100%</centerleft>
+							<centerright>100%</centerright>
+							<centertop>100%</centertop>
+							<centerbottom>100%</centerbottom>
+							<aspectratio>keep</aspectratio>
+							<texture border="5">special://skin/extras/PVR_Q/TvGuide/Program_MenuSelect_Inerborder.png</texture>
+							<shadowcolor>black</shadowcolor>
+						</control>
+						<visible>Control.HasFocus(50)</visible>
+						<!--===================================================================================================-->
+					</control>
+					<!--==================================Highlighted channel text===========================================-->
+					<control type="label" id="1">
+						<left>20</left>
+						<top>25</top>
+						<font>Rounded_Mplus_1C_PVRleft</font>
+						<label>$INFO[ListItem.ChannelName]</label>
+						<!-- <texture border="3" fallback="windows/pvr/epg-genres/16.png">$INFO[ListItem.Property(GenreType),windows/pvr/epg-genres/,.png]</texture> -->
+					</control>
+				</focusedchannellayout>
+
+
+				<itemlayout height="90" width="60">
+					<control type="label" id="1">
+						<left>30</left>
+						<top>0</top>
+						<aligny>center</aligny>
+						<shadowcolor>black</shadowcolor>
+						<font>Rounded_Mplus_1C_PVRleft</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<!--======================This is the shaded line under channels programs=======================-->
+					<control type="image" id="2">
+						<width>100%</width>
+						<height>4</height>
+						<top>90</top>
+						<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+						<texture border="0" colordiffuse="button_focus">windows/pvr/epg-genres/192.png</texture>
+					</control>
+					<control type="image">
+						<left>6</left>
+						<top>35</top>
+						<width>20</width>
+						<height>20</height>
+						<texture>$VAR[PVRTimerIcon]</texture>
+					</control>
+
+					<!--==========================================This is the separator for programs you only need to do end line. no start=======================-->
+					<control type="group">
+						<control type="image" id="2">
+							<posx>0</posx>
+							<posy>4</posy>
+							<width>2</width>
+							<height>86</height>
+							<texture>special://skin/extras/PVR_Q/TvGuide/KodiQ_ProgramSeparator.png</texture>
+							<visible>true</visible>
+						</control>
+					</control>
+				</itemlayout>
+
+				<focusedlayout height="90" width="60">
+					<!--==========================================This is the separator for programs when highlighted. you only need to do end line...no start=======================-->
+					<control type="group">
+						<control type="image" id="2">
+							<posx>0</posx>
+							<posy>4</posy>
+							<width>2</width>
+							<height>86</height>
+							<texture>special://skin/extras/PVR_Q/TvGuide/KodiQ_ProgramSeparator.png</texture>
+							<visible>true</visible>
+						</control>
+					</control>
+
+
+					<control type="image" id="2">
+						<width>100%</width>
+						<height>4</height>
+						<top>90</top>
+						<texture>special://skin/extras/PVR_Q/TvGuide/shadedline_2.png</texture>
+					</control>
+
+					<!--===================================PVR guide channel programs behind highlighted long=====================================-->
+					<control type="image" id="2">
+						<top>5</top>
+						<left>1</left>
+						<width>100%</width>
+						<height>94%</height>
+						<texture border="3" fallback="windows/pvr/epg-genres/16.png">special://skin/extras/PVR_Q/TvGuide/Highlight_Under_Button.png</texture>
+						<visible>!Control.HasFocus(10)</visible>
+					</control>
+
+					<!--===================================PVR guide channel programs highlight long=====================================-->
+
+					<control type="image" id="2">
+						<posx>-11</posx>
+						<posy>-10</posy>
+						<width>142%</width>
+						<height>128%</height>
+						<texture border="-0">special://skin/extras/PVR_Q/TvGuide/Alpha_Border.png</texture>
+						<visible>Control.HasFocus(50)</visible>
+						<bordertexture border="10">special://skin/extras/PVR_Q/TvGuide/darkline.png</bordertexture>
+						<bordersize>13</bordersize>
+						<animation type="Focus" reversible="true">
+							<effect type="zoom" center="auto" start="0" end="100" time="200" tween="back" easing="inout" />
+						</animation>
+					</control>
+					<control type="image" id="1">
+						<top>5</top>
+						<left>1</left>
+						<width>100%</width>
+						<height>94%</height>
+						<texture border="12">special://skin/extras/PVR_Q/TvGuide/MenuSelect_Background_2.png</texture>
+						<visible>Control.HasFocus(50)</visible>
+					</control>
+					<control type="label" id="1">
+						<left>30</left>
+						<top>0</top>
+						<aligny>center</aligny>
+						<font>Rounded_Mplus_1C_PVRleft</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="image">
+						<left>6</left>
+						<top>35</top>
+						<width>20</width>
+						<height>20</height>
+						<texture>$VAR[PVRTimerIcon]</texture>
+					</control>
+
+				</focusedlayout>
+			</control>
+
+		</definition>
+	</include>
+
+	<!-- <include name="KodiQ-VerticalListLayout">
+	    <definition>
+			<itemlayout height="80" condition="Container.Content(addons)">
+				<control type="image">
+					<left>20</left>
+					<top>25</top>
+					<width>32</width>
+					<height>32</height>
+					<texture>$VAR[AddonsListIconVar]</texture>
+				</control>
+				<control type="label">
+					<left>75</left>
+					<height>80</height>
+					<right>40</right>
+					<aligny>center</aligny>
+					<scroll>true</scroll>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>75</left>
+					<height>80</height>
+					<right>40</right>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>font27</font>
+					<label>$VAR[AddonsLabel2Var]</label>
+					<textcolor>grey</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+				</control>
+			</itemlayout>
+			
+			<focusedlayout height="80" condition="Container.Content(addons)">
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<height>80</height>
+					<texture colordiffuse="button_focus">lists/focus.png</texture>
+					<visible>Control.hasFocus(55)</visible>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>25</top>
+					<width>32</width>
+					<height>32</height>
+					<texture>$VAR[AddonsListIconVar]</texture>
+				</control>
+				<control type="label">
+					<left>75</left>
+					<height>80</height>
+					<right>40</right>
+					<aligny>center</aligny>
+					<scroll>true</scroll>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>75</left>
+					<height>80</height>
+					<right>40</right>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>font27</font>
+					<label>$VAR[AddonsLabel2Var]</label>
+				</control>
+			</focusedlayout>
+
+		</definition>
+	</include> -->
+	<include name="KodiQ-VerticalListSummaryLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<label></label>
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+
+						<label>Main System Storage</label>
+						<label2>$INFO[System.TotalSpace]    $INFO[System.FreeSpace]    $INFO[System.UsedSpace]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>RAM Memory</label>
+						<label2>$INFO[system.memory(used)] [B]/[/B] $INFO[system.memory(total)] [B]-[/B] $INFO[system.memory(used.percent)]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+
+					</item>
+					<item id="S03">
+						<label>Screen Resolution</label>
+						<label2>$INFO[System.ScreenResolution]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>Operating System</label>
+						<label2>$INFO[System.OSVersionInfo]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S05">
+						<label>System Uptime</label>
+						<label2>$INFO[System.Uptime]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S06">
+						<label>Total Uptime</label>
+						<label2>$INFO[System.TotalUptime]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S07">
+						<label>IP Address</label>
+						<label2>$INFO[Network.IPAddress]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S08">
+						<label>Battery Level</label>
+						<label2>$INFO[System.BatteryLevel]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+	<include name="KodiQ-VerticalListNetworkLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<label></label>
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+						<label>Link State</label>
+						<label2>$INFO[Network.LinkState]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>MAC Address</label>
+						<label2>$INFO[Network.MacAddress]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S03">
+						<label>IP Address</label>
+						<label2>$INFO[Network.IPAddress]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>Subnet Mask</label>
+						<label2>$INFO[Network.SubnetMask]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S05">
+						<label>Gateway</label>
+						<label2>$INFO[Network.GatewayAddress]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S06">
+						<label>Primary DNS</label>
+						<label2>$INFO[Network.DNS1Address]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S07">
+						<label>Secondary DNS</label>
+						<label2>$INFO[Network.DNS2Address]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S08">
+						<label>Internet</label>
+						<label2>$INFO[System.InternetState]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+	<include name="KodiQ-VerticalListVideoLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<label></label>
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+						<label>Screen Resolution</label>
+						<label2>$INFO[System.ScreenResolution]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>Video Encoder</label>
+						<label2>$INFO[System.VideoEncoderInfo]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S03">
+						<label>Screen Mode</label>
+						<label2>$INFO[System.ScreenMode]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>Screen Dimensions</label>
+						<label2>$INFO[System.ScreenWidth] x $INFO[System.ScreenHeight]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S05">
+						<label>Renderer</label>
+						<label2>[UPPERCASE]  $INFO[Player.Process(pixformat)][/UPPERCASE] </label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+	<include name="KodiQ-VerticalListStorageLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="18100">
+				<posx>0</posx>
+				<posy>0</posy>
+
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<label></label>
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+						<label>C:\</label>
+						<label2>$INFO[System.TotalSpace.%d]    $INFO[System.FreeSpace.%d]    $INFO[System.UsedSpace.%d]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>D:\</label>
+						<label2>$INFO[Player.Process(VideoDecoder)] null</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S03">
+						<label>E:\</label>
+						<label2>$INFO[System.TotalSpace.%d]    $INFO[System.FreeSpace.%d]    $INFO[System.UsedSpace.%d]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>F:\</label>
+						<label2>$INFO[System.TotalSpace.%]    $INFO[System.FreeSpace%d]    $INFO[System.UsedSpace.d]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+	<include name="KodiQ-VerticalListPVRServiceLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<label></label>
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+						<label>Client Number</label>
+						<label2>$INFO[PVR.BackendNumber]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>Signal</label>
+						<label2>$INFO[Pvr.ActStreamSignal]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S03">
+						<label>PVR Backend</label>
+						<label2>$INFO[PVR.ActStreamClient]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>Version</label>
+						<label2>$INFO[PVR.BackendVersion]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S05">
+						<label>Address</label>
+						<label2>$INFO[PVR.BackendNumber]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S06">
+						<label>Disksize</label>
+						<label2>$INFO[PVR.BackendDiskspace]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S07">
+						<label>Channels</label>
+						<label2>$INFO[PVR.BackendChannels]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S08">
+						<label>Recordings</label>
+						<label2>$INFO[PVR.BackendRecordings]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S09">
+						<label>Deleted Recoverable Recordings</label>
+						<label2>$INFO[Pvr.BackendDeletedRecordings] $INFO[Pvr.DeletedRecordings]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S10">
+						<label>Upcoming Recordings</label>
+						<label2>$INFO[System.TotalSpace,4]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S11">
+						<label>Device Name</label>
+						<label2>$INFO[PVR.ActStreamDevice]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S12">
+						<label>PVR Status</label>
+						<label2>$INFO[PVR.ActStreamStatus]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S13">
+						<label>PVR</label>
+						<label2>$INFO[System.HasPVR]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+
+	<include name="KodiQ-VerticalListPrivacyPolicyLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="grouplist" id="19000">
+
+				<control type="group">
+					<left>0</left>
+					<top>0</top>
+					<control type="textbox">
+						<description>Privacy Policy Section</description>
+						<posx>650</posx>
+						<posy>0</posy>
+						<width>1080</width>
+						<height>1080</height>
+						<align>center</align>
+						<colordiffuse>FFFFFFFF</colordiffuse>
+						<font>KodiQ-PrivacyPolicyFont</font>
+						<monofont>KodiQ-PrivacyPolicyMono</monofont>
+						<textcolor>FFFFFFFF</textcolor>
+						<shadowcolor>text_shadow</shadowcolor>
+						<pulseonselect></pulseonselect>
+						<pagecontrol>13</pagecontrol>
+						<scrolltime>8000</scrolltime>
+						<label>$INFO[System.PrivacyPolicy]</label>
+						<autoscroll delay="14000" time="4000" repeat="10000"></autoscroll>
+						<visible>Container(9701).HasFocus(06)</visible>
+						<description>Use this to make autoscroll start over when item is focused</description>
+					</control>
+				</control>
+
+			</control>
+		</definition>
+	</include>
+	<include name="KodiQ-VerticalListHardwareLayout">
+
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<posx>0</posx>
+				<posy>0</posy>
+
+				<include content="KodiQ-SettingsListOrientation">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+
+				<itemlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoLayout">
+							<param name="focused" value="false" />
+						</include>
+					</control>
+
+				</itemlayout>
+
+				<focusedlayout height="76" width="60">
+					<control type="group">
+						<left>1000</left>
+						<top>0</top>
+						<include content="KodiQ-SystemInfoFocusedLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+				<content>
+					<item id="S00">
+						<!-- <label></label>
+						<onfocus>false</onfocus> -->
+						<!-- <property name="menu_id"></property>
+						<onclick>ActivateWindow(null)</onclick>	 -->
+					</item>
+					<item id="S01">
+
+						<label>CPU</label>
+						<label2>$INFO[System.Hardware.CpuManufacturer]poop</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S02">
+						<label>CPU Temperature</label>
+						<label2>$INFO[System.CoreUsage(id)] $INFO[System.TemperatureUnits]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S03">
+						<label>CPU Speed</label>
+						<label2>$INFO[System.CpuFrequency]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S04">
+						<label>System CPU Usage</label>
+						<label2>$INFO[System.CpuUsage]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S05">
+						<label>Total Memory</label>
+						<label2>$INFO[System.Memory(total)]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S06">
+						<label>Free Memory</label>
+						<label2>$INFO[System.Memory(free)]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S07">
+						<label>Fan Speed</label>
+						<label2>$INFO[System.BuildVersionShort]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<!-- <item id="S08">
+					    <label>Recordings</label>
+						<label2>$INFO[PVR.BackendRecordings]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+                    <item id="S09">
+					    <label>Deleted & Recoverable Recordings</label>
+						<label2>$INFO[Pvr.BackendDeletedRecordings] $INFO[Pvr.DeletedRecordings]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+					<item id="S10">
+					    <label>Upcoming Recordings</label>
+						<label2>$INFO[System.TotalSpace,4]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+                    <item id="S11">
+					    <label>Device Name</label>
+						<label2>$INFO[PVR.ActStreamDevice]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item>
+                    <item id="S12">
+					    <label>PVR Status</label>
+						<label2>$INFO[PVR.ActStreamStatus]</label2>
+						<property name="menu_id">$NUMBER[]</property>
+						<onclick>ActivateWindow(null)</onclick>
+						<visible>true</visible>
+					</item> -->
+				</content>
+			</control>
+		</definition>
+	</include>
+	
+	<include name="KodiQ-GroupListSystemStatsLayout">
+		<definition>
+
+			<include content="BusyListSpinner">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="250" />
+			</include>
+
+			<control type="group">
+				<posx>120</posx>
+				<posy>0</posy>
+				<top>87</top>
+				<bottom>0</bottom>
+				<height>330</height>
+				<control type="image">
+					<left>380</left>
+					<top>20</top>
+					<right>0</right>
+					<height>3</height>
+					<texture colordiffuse="button_focus" border="2">dialogs/separator-grey.png</texture>
+				</control>
+
+				<control type="grouplist">
+					<left>420</left>
+					<orientation>vertical</orientation>
+					<control type="label">
+						<description>CPU Text</description>
+						<width>730</width>
+						<height>80</height>
+						<label>$LOCALIZE[13271] $INFO[System.CPUUsage]</label>
+						<aligny>top</aligny>
+						<textoffsety>40</textoffsety>
+						<shadowcolor>black</shadowcolor>
+						<font>font27</font>
+					</control>
+					<control type="progress">
+						<description>CPU BAR</description>
+						<width>730</width>
+						<height>16</height>
+						<info>System.CPUUsage</info>
+					</control>
+					<control type="label">
+						<description>Memory Text</description>
+						<width>730</width>
+						<height>40</height>
+						<label>$LOCALIZE[31030]: $INFO[system.memory(used)] [B]/[/B] $INFO[system.memory(total)] [B]-[/B] $INFO[system.memory(used.percent)]</label>
+						<aligny>center</aligny>
+						<shadowcolor>black</shadowcolor>
+						<font>font27</font>
+					</control>
+					<control type="progress">
+						<description>Memory BAR</description>
+						<width>730</width>
+						<height>16</height>
+						<info>system.memory(used)</info>
+					</control>
+				</control>
+
+				<control type="label">
+					<top>34</top>
+					<left>1210</left>
+					<width>auto</width>
+					<height>50</height>
+					<aligny>bottom</aligny>
+					<textoffsety>10</textoffsety>
+					<label>$LOCALIZE[31031]: $INFO[listitem.version]poop</label>
+					<shadowcolor>black</shadowcolor>
+					<font>font25_title</font>
+				</control>
+
+				<control type="grouplist">
+					<description>Kodi build version</description>
+					<itemgap>10</itemgap>
+					<top>80</top>
+					<left>1210</left>
+					<width>820</width>
+					<height>45</height>
+					<orientation>horizontal</orientation>
+					<control type="label">
+						<description>Build label</description>
+						<width>auto</width>
+						<height>50</height>
+						<aligny>bottom</aligny>
+						<font>font12</font>
+						<textoffsety>10</textoffsety>
+						<label>$LOCALIZE[144] $INFO[system.buildversion]</label>
+						<shadowcolor>black</shadowcolor>
+					</control>
+					<control type="label" id="52">
+						<description>Kodi Build Version</description>
+						<height>50</height>
+						<aligny>bottom</aligny>
+						<textoffsety>10</textoffsety>
+						<font>font12</font>
+						<width>auto</width>
+						<textcolor>button_focus</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+
+				<control type="grouplist">
+					<description>Build date</description>
+					<itemgap>10</itemgap>
+					<top>125</top>
+					<left>1210</left>
+					<width>800</width>
+					<orientation>horizontal</orientation>
+					<control type="label">
+						<description>kodi Compiled Text</description>
+						<width>auto</width>
+						<height>25</height>
+						<label>$LOCALIZE[174] $INFO[System.BuildDate]</label>
+						<font>font12</font>
+						<shadowcolor>black</shadowcolor>
+					</control>
+					<control type="label" id="53">
+						<description>Kodi Build Date</description>
+						<width>auto</width>
+						<font>font12</font>
+						<textcolor>button_focus</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+
+			</control>
+
+		</definition>
+	</include>
+	
+	<include name="KodiQ-MainEpgGuide">
+		<definition>
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group">
+				<animation type="Conditional" condition="Control.IsVisible(20000)" reversible="false">
+					<effect type="slide" end="0,20" time="60" tween="sine" />
+					<effect type="slide" end="0,-20" time="180" tween="sine" delay="80" />
+				</animation>
+				<animation type="Conditional" condition="Control.IsVisible(20001)" reversible="false">
+					<effect type="slide" end="0,-20" time="60" tween="sine" />
+					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
+				</animation>
+
+				<control type="group">
+					<control type="group">
+						<top>372</top>
+						<depth>DepthContentPanel</depth>
+
+						<control type="group" id="63">
+							<include>VisibleFadeEffect</include>
+							<include>OpenClose_Right</include>
+							<include>Visible_Right</include>
+							<include content="KodiQ_EpgGridLayout">
+								<param name="control_id" value="50" />
+								<param name="control_orientation" value="vertical" />
+							</include>
+						</control>
+
+					</control>
+					<include content="KodiQ_TvGridInfoBar"></include>
+				</control>
+
+				<include>PVRChannelNumberInput</include>
+
+			</control>
+			<control type="label" id="29">
+				<font></font>
+				<include>HiddenObject</include>
+			</control>
+			<control type="label" id="30">
+				<font></font>
+				<include>HiddenObject</include>
+			</control>
+		</definition>
+	</include>
+	<description> ============================================================================================================================================================== </description>
+
+	<description> ============================================================================================================================================================== </description>
+
+
+</includes>

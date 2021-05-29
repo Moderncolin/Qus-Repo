@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="8890">
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<controls>
+		<control type="button" id="20000">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus(2000)</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20000)</visible>
+		</control>
+		<control type="button" id="20001">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus(2000)</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
+		</control>
+		<include>DefaultBackground</include>
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>600</fadetime>
+			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+			<animation effect="fade" time="400">VisibleChange</animation>
+			<imagepath background="true" colordiffuse="bg_overlay">$VAR[HomeFanartVar]</imagepath>
+			<visible>!Player.HasMedia</visible>
+		</control>
+		<include content="SkyQ-KodiEditioninfobar"></include>
+		
+		<include content="TopBar">
+				<param name="breadcrumbs_label" value="    TV Guide" />
+				<left></left>
+				<top></top>
+				<width></width>
+				<height></height>
+		</include>
+		
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			
+			<control type="group" id="2000">
+				<left>850</left>
+				<animation type="Conditional" condition="Control.IsVisible(20000)" reversible="false">
+					<effect type="slide" end="0,20" time="60" tween="sine" />
+					<effect type="slide" end="0,-20" time="180" tween="sine" delay="80" />
+				</animation>
+				<animation type="Conditional" condition="Control.IsVisible(20001)" reversible="false">
+					<effect type="slide" end="0,-20" time="60" tween="sine" />
+					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
+				</animation>
+				
+				<include>OpenClose_Right</include>
+
+				<!--<control type="group" id="13900">
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),featured)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="featured"/>
+					</include>
+				</control>
+				<control type="group" id="">
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),featured)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value=""/>
+					</include>
+				</control>-->
+			</control>
+
+
+<!--======================================================================Main Menu========================================================================-->
+			<control type="group">
+				<depth>DepthContentPanel</depth>
+				<include>OpenClose_Left</include>
+				<include content="ContentPanel">
+					<param name="width" value="522" />
+				</include>
+				<!--<posx>12</posx>
+                <posy>100</posy>-->
+				<visible>true</visible>
+				<control type="wraplist" id="9000">
+				    <include>VisibleFadeEffect</include>
+					<pagecontrol>0</pagecontrol>
+					<left>-26</left>
+					<top>430</top>
+					<width>462</width>
+					<height>710</height>
+				    <movement>3</movement>
+					<focusposition>0</focusposition>
+					<onfocus>ClearProperty(listposition,home)</onfocus>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<onup>700</onup>
+					<ondown>700</ondown>
+					<onleft>13500</onleft>
+					<!--<scrolltime tween="circle" easing="inout">1000</scrolltime>-->
+				    <scrolltime>0</scrolltime>
+					<scrollspeed>0</scrollspeed>
+<!--==================================================================================Box around menu items======================================================-->					
+					<focusedlayout height="95">
+					
+						<control type="group">
+							<control type="image">
+								<left>88</left>
+								<width>368</width>
+								<height>70</height>
+								<top>12</top>
+								<colordiffuse></colordiffuse>
+								<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>
+							<control type="image">
+								<left>82</left>
+								<width>380</width>
+								<height>82</height>
+								<top>6</top>
+								<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+								<shadowcolor>black</shadowcolor>
+							</control>
+							
+						<include>KodiQ-HomeMenu_SlidingGlow</include>
+						
+						</control>
+						<!--<control type="image">
+							<left>-3</left>
+							<top>1</top>
+							<width>95</width>
+							<height>95</height>
+							<texture>$INFO[ListItem.Art(thumb)]</texture>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>-->
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>MainMenu_Focused</font>        <!--======To make the main menu text bigger when it is highlighed Check Fonts.xml======-->
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</focusedlayout>
+					<itemlayout height="95">
+						<!--<control type="image">
+							<left>-3</left>
+							<top>1</top>
+							<width>95</width>
+							<height>95</height>
+							<texture colordiffuse="44FFFFFF">$INFO[ListItem.Art(thumb)]</texture>
+						</control>-->
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>MainMenu_Layout</font>        <!--======To make the main menu text smaller when it is not highlighed Check Fonts.xml======-->
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</itemlayout>
+
+					<content>
+<!--=================================================Menu buttons=================================-->
+                        <!-- <include content="WidgetListChannels" condition="System.HasPVRAddon">
+							<param name="content_path" value="pvr://channels/tv/*?view=lastplayed"/>
+							<param name="sortby" value="lastplayed"/>
+							<param name="sortorder" value="descending"/>
+							<param name="widget_header" value="$LOCALIZE[31016]"/>
+							<param name="widget_target" value="pvr"/>
+							<param name="list_id" value="12200"/>
+						</include> -->
+
+                        <item>
+							<label>24/7</label>
+							<onclick>ActivateWindow(tvguide,pvr://channels/tv/*?groups=24/7)</onclick>
+							<property name="menu_id">11</property>
+							<property name="id">11</property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+
+                        <item>
+							<label>USA</label>							
+							<onclick condition="System.HasPVRAddon">ActivateWindow(tvguide,pvr://channels/tv/USA,return)</onclick>
+							<!-- <onclick>ActivateWindow(tvguide,pvr://channels/tv/USA/)</onclick> -->
+							<!-- <onclick condition="!String.IsEmpty(PVR.Plugin)">ActivateWindow(tvguide,pvr://channels/tv/uk/,return)</onclick>
+                            <onclick condition="String.IsEmpty(PVR.Plugin)"></onclick> -->
+
+							<property name="menu_id"></property>
+							<property name="id">tvguide</property>
+							<!-- <visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible> -->
+
+						</item>
+						
+						<item>
+							<label>UK</label>							
+							<onclick condition="System.HasPVRAddon">ActivateWindow(tvguide,pvr://channels/tv/USA,return)</onclick>
+							<!-- <onclick>ActivateWindow(tvguide,pvr://channels/tv/USA/)</onclick> -->
+							<!-- <onclick condition="!String.IsEmpty(PVR.Plugin)">ActivateWindow(tvguide,pvr://channels/tv/uk/,return)</onclick>
+                            <onclick condition="String.IsEmpty(PVR.Plugin)"></onclick> -->
+
+							<property name="menu_id"></property>
+							<property name="id">tvguide</property>
+							<!-- <visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible> -->
+
+						</item>
+						
+					    <item>
+							<label>Favourites</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible>
+						</item>
+						<item>
+							<label>All channels</label>
+							<include content="Visible_Right_Delayed">
+						        <param name="id" value="livetv"/>
+					        </include>
+							<onclick>ActivateWindow(10702)</onclick>      <!--===============10702 is the MyPVRGuide.xml window id====================-->
+							<property name="menu_id"></property>
+							<property name="id">tvguide</property>
+							<visible>!String.IsEqual(Container(9000).ListItem.Property(id),livetv)</visible>    <!--=============I changed this from !Skin.HasSetting(HomeMenuNoTVButton)=================-->							
+						</item>
+						<item>
+							<label>HD</label>
+							<onclick>ActivateWindow(tvchannels,UK)</onclick>
+							<property name="menu_id"></property>
+							<property name="id">tvchannels</property>
+							<visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible>
+						</item>
+						<item>
+							<label>+1</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Documentaries</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Kids</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Movies</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Sports</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>News</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Entertainment</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>Music</label>
+							<onclick>ActivateWindow()</onclick>
+							<property name="menu_id"></property>
+							<property name="id"></property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						
+						<!--<item>
+							<label>Featured</label>
+							<onclick>ActivateWindow(special://userdata/addon_data/plugin.video.Galaxy/Movies)</onclick>
+							<property name="menu_id"></property>
+							<property name="id">featured</property>
+							<visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible>
+						</item>
+						<item>
+							<label>Sky Box Sets</label>
+							<onclick>ActivateWindow(10025,&quot;plugin://plugin.video.Galaxy/&quot;,return)</onclick>
+							<property name="menu_id"></property>
+							<property name="id">SkyBoxSets</property>
+							<visible>!Skin.HasSetting(HomeMenuNokidsButton)</visible>
+						</item>-->
+					</content>
+				</control>
+
+			</control>
+			<!--<include>BottomBar</include>-->
+			<!--<include content="TopBar">
+				<param name="breadcrumbs_label" value="" />
+			</include>-->
+
+			<!-- <control type="rss">
+				<animation effect="slide" end="0,90" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
+				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+				<left>0</left>
+				<bottom>0</bottom>
+				<height>30</height>
+				<width>25%</width>
+				<font>font12</font>
+				<urlset>1</urlset>
+				<hitrect x="-100" y="0" w="1" h="1" />
+				<titlecolor>button_focus</titlecolor>
+				<textcolor>button_focus</textcolor>
+				<shadowcolor>text_shadow</shadowcolor>
+				<headlinecolor>FFC0C0C0</headlinecolor>
+			</control> -->
+		</control>
+	</controls>
+</window>

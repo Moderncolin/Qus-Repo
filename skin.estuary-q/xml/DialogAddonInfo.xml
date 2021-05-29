@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<onload condition="!ListItem.Property(addon.isinstalled) + Window.IsActive(addonbrowser)">SetFocus(6)</onload>
+	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Art(fanart)],home)</onload>
+	<onunload>ClearProperty(infobackground,home)</onunload>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<height>1080</height>
+			<centerleft>50%</centerleft>
+			<width>1920</width>
+			<control type="group">
+				<include>OpenClose_Right</include>
+				
+				<!-- <control type="button" id="5000">
+					<left>605</left>
+					<top>400</top>
+					<width>1235</width>
+					<height>435</height>
+					<label></label>
+					<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+					<onup>50</onup>
+					<ondown>9000</ondown>
+					<onclick>SetProperty(TextViewer_Header,$LOCALIZE[31141] $INFO[ListItem.AddonVersion],home)</onclick>
+					<onclick>SetProperty(TextViewer_Text,$ESCINFO[ListItem.AddonNews],home)</onclick>
+					<onclick>ActivateWindow(1102)</onclick>
+					<enable>!String.IsEmpty(ListItem.AddonNews)</enable>
+				</control> -->
+				<control type="group">
+					<control type="image">
+						<left>505</left>380
+						<top>122</top>
+						<right>0</right>
+						<height>1</height>
+						<width>72%</width>
+						<align>center</align>
+						<texture colordiffuse="66C0C0C0" border="0">dialogs/separator-grey.png</texture>
+					</control>
+					<control type="image">
+						<left>505</left>380
+						<bottom>104</bottom>
+						<right>0</right>
+						<height>1</height>
+						<width>72%</width>
+						<align>center</align>
+						<texture colordiffuse="66C0C0C0" border="0">dialogs/separator-grey.png</texture>
+					</control>
+					<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+					<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				</control>
+				
+				<control type="group">				    
+					<control type="label" id="2020">
+						<left>765</left>
+						<top>414</top>
+						<width>1050</width>
+						<height>365</height>
+						<shadowcolor>black</shadowcolor>
+						<font>KodiQ-Medium-DialogAddonInfo-Title</font>						
+						<label>$INFO[ListItem.AddonSummary]</label>					
+					</control>
+					<control type="textbox">
+						<left>765</left>
+						<top>460</top>
+						<width>1050</width>
+						<height>368</height>
+						<shadowcolor>black</shadowcolor>
+						<font>KodiQ-Medium-DialogAddonInfo-Description</font>
+						<label>$INFO[ListItem.AddonDescription][CR]</label>
+						<autoscroll delay="5000" repeat="7500" time="5000">true</autoscroll>
+						<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+						<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+					</control>
+					
+					<description>$VAR[AddonNewsVar,[I][CR][CR],[/I]] trun this into a button </description>
+					
+					<control type="textbox">
+						<left>474</left>
+						<top>976</top>
+						<width>1420</width>
+						<height>82</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<shadowcolor>black</shadowcolor>
+						<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+						<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+						<label>[I]$INFO[ListItem.AddonDisclaimer][/I]</label>
+						<textcolor>FFFFFFFF</textcolor>
+						<autoscroll time="9500" delay="6000" repeat="5000">true</autoscroll>
+					</control>
+				</control>
+				
+				<control type="group">
+					<left>628</left>
+					<top>152</top>
+					<control type="image">
+						<width>360</width>
+						<height>187</height>
+						<aspectratio>scale</aspectratio>					
+						<texture background="true">DefaultNoPreview.png</texture>
+						<bordertexture border="0">overlays/shadow.png</bordertexture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>390</left>
+						<width>360</width>
+						<height>187</height>
+						<texture background="true">DefaultNoPreview.png</texture>
+						<aspectratio>scale</aspectratio>
+						<bordertexture border="0">overlays/shadow.png</bordertexture>
+						<bordersize>0</bordersize>
+					</control>
+					<control type="image">
+						<left>780</left>
+						<width>360</width>
+						<height>187</height>
+						<texture background="true">DefaultNoPreview.png</texture>
+						<aspectratio>scale</aspectratio>
+						<bordertexture border="0">overlays/shadow.png</bordertexture>
+						<bordersize>0</bordersize>
+					</control>
+                    <visible>Integer.IsEqual(Container(50).NumItems,0)</visible>
+				</control>
+				
+<description>-- Addon preview pictures panel (top)--</description>
+				<control type="panel" id="50">
+					<left>628</left>
+					<top>142</top>
+					<width>1170</width>
+					<height>273</height>
+					<ondown>9000</ondown>
+					<onup>null</onup>					
+					<orientation>horizontal</orientation>					
+					<itemlayout height="225" width="390">					    
+                        <control type="group">	                    
+						<depth>DepthContentPopout</depth>
+							<control type="image">
+								<left>0</left>
+								<top>10</top>
+								<width>360</width>
+								<height>187</height>
+								<aspectratio>auto</aspectratio>					
+								<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+								<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+								<bordersize>-0</bordersize>
+								<animation type="Focus" reversible="false">
+									<effect type="zoom" start="100" end="105,110" time="200" tween="sine" easing="inout" center="auto" />
+								</animation>
+								<animation type="Unfocus">
+									<effect type="zoom" start="103,108" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								</animation>
+							</control>
+						</control>
+						<control type="group">
+						<depth>DepthContentPopout</depth>						
+							<control type="image">
+								<left>0</left>
+								<top>10</top>
+								<width>360</width>
+								<height>187</height>
+								<aspectratio>auto</aspectratio>					
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<bordersize>5</bordersize>
+								<animation type="Focus" reversible="false">
+									<effect type="zoom" start="100" end="101" time="200" tween="sine" easing="inout" center="252,170" />
+								</animation>
+								<animation type="Unfocus">
+									<effect type="zoom" start="101" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								</animation>
+							</control>
+						</control>
+					</itemlayout>
+					
+					<focusedlayout height="225" width="390">
+						<control type="group">
+						    <control type="image">
+								<left>0</left>
+								<top>10</top>
+								<width>360</width>
+								<height>187</height>
+								<texture colordiffuse="FFFFFFFF">special://skin/extras/PVR_Q/AddonInfoButton/KodiQ-AddonInfo_Highlight_Image_3.png</texture>
+							</control>
+							<control type="group">	                    
+							<depth>DepthContentPopout</depth>
+								<control type="image">
+									<left>0</left>
+									<top>10</top>
+									<width>360</width>
+									<height>187</height>
+									<aspectratio>auto</aspectratio>					
+									<texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+									<bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+									<bordersize>-0</bordersize>
+								</control>
+							</control>
+							<control type="group">
+							<depth>DepthContentPopout</depth>						
+								<control type="image">
+									<left>0</left>
+									<top>10</top>
+									<width>360</width>
+									<height>187</height>
+									<aspectratio>auto</aspectratio>					
+									<texture background="true">$INFO[ListItem.Icon]</texture>
+									<bordersize>5</bordersize>
+								</control>
+							</control>							
+							<animation type="Focus" reversible="false">
+								<effect type="zoom" start="100" end="105,110" time="200" tween="sine" easing="inout" center="auto" />
+							</animation>
+							<animation type="Unfocus">
+								<effect type="zoom" start="103,108" end="100" time="200" tween="sine" easing="inout" center="auto" />
+							</animation>
+						</control>
+					</focusedlayout>
+					
+				</control>
+				
+				<include content="LeftRightArrows">
+					<param name="list_id" value="50" />
+					<param name="left_posx" value="574" />
+					<param name="right_posx" value="1794" />
+					<param name="posy" value="230" />
+					<param name="visible" value="true" />
+				</include>
+				
+<description>-- Addon preview buttons and icons at the (bottom). Now runs down the (left) side. --</description>				
+				<control type="grouplist" id="9000">
+				    <posx>560</posx>
+					<posy>420</posy>
+					<width>1450</width>
+					<height>700</height>
+					<onleft>back</onleft>
+					<onright>9000</onright>
+					<onup>50</onup>
+					<ondown>null</ondown>
+					<itemgap>8</itemgap>
+					<orientation>vertical</orientation>
+					<include content="KodiQ-InfoDialogButton-Click">
+						<param name="id" value="12" />
+						<param name="icon" value="icons/infodialogs/launch.png" />
+						<param name="label" value="$LOCALIZE[518]" />
+					</include>
+					<include content="KodiQ-InfoDialogButton-Click">
+						<param name="id" value="9" />
+						<param name="icon" value="icons/infodialogs/configure.png" />
+						<param name="label" value="$LOCALIZE[24020]" />
+					</include>
+					<include content="KodiQ-InfoDialogButton-Click">
+						<param name="id" value="8" />
+						<param name="icon" value="icons/infodialogs/update.png" />
+						<param name="label" value="$LOCALIZE[24069]" />
+					</include>
+					
+					<include content="KodiQ-InfoDialogButton-Switch">
+						<param name="id" value="13" />
+						<param name="label" value="$PARAM[label]" />
+					</include>
+					
+					<include content="KodiQ-InfoDialogButton-Click">
+						<param name="id" value="10" />
+						<param name="icon" value="icons/infodialogs/info.png" />
+						<param name="label" value="$LOCALIZE[39024]" />
+					</include>
+					
+					<include content="KodiQ-InfoDialogButton-Action">
+						<param name="id" value="7" />
+						<param name="icon_on" value="icons/infodialogs/disable.png" />
+						<param name="icon_off" value="icons/infodialogs/enabled.png" />
+						<param name="selected" value="!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022]) | !Window.IsActive(addonbrowser)" />
+						<param name="label" value="" />
+					</include>
+					<include content="KodiQ-InfoDialogButton-Action">
+						<param name="id" value="6" />
+						<param name="icon_on" value="icons/infodialogs/uninstall.png" />
+						<param name="icon_off" value="icons/infodialogs/install.png" />
+						<param name="selected" value="ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)" />
+						<param name="label" value="" />
+					</include>
+				</control>
+			</control>
+<description>-- Image and repo name left side --</description>		
+			<control type="group">
+				<include>OpenClose_Left</include>
+				<top>374</top>
+				<left>12</left>
+				<control type="image">
+					<left>-6</left>
+					<top>4</top>
+					<width>480</width>
+					<height>480</height>
+					<aspectratio>scale</aspectratio>
+					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+					<left>14</left>
+					<top>24</top>
+					<width>440</width>
+					<height>440</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<fadetime>300</fadetime>
+					<texture fallback="DefaultAddon.png" background="true">$INFO[ListItem.Art(thumb)]</texture>
+				</control>
+				<control type="group">
+					<visible>!String.IsEmpty(ListItem.AddonBroken)</visible>
+					<control type="image">
+						<left>14</left>
+						<top>24</top>
+						<width>440</width>
+						<height>440</height>
+						<texture colordiffuse="AAFFFFFF">colors/black.png</texture>
+					</control>
+					<control type="textbox">
+						<left>34</left>
+						<top>24</top>
+						<width>400</width>
+						<height>440</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<label>$LOCALIZE[24096]</label>
+						<font>font36_title</font>
+					</control>
+				</control>
+				<control type="image">
+					<left>-6</left>
+					<top>470</top>
+					<width>480</width>
+					<height>150</height>
+					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				
+				<control type="grouplist">
+					<left>23</left>
+					<top>500</top>
+					<control type="label">
+						<width>200</width>
+						<height>80</height>
+						<label>$INFO[ListItem.AddonSize,[COLOR button_focus]$LOCALIZE[22031]:[/COLOR] ,[CR]]</label>
+						<visible>!String.IsEmpty(ListItem.AddonSize)</visible>
+					</control>
+					<control type="textbox">
+						<width>436</width>
+						<height>auto</height>
+						<label>$INFO[ListItem.AddonOrigin,[COLOR button_focus]$LOCALIZE[31150]:[/COLOR] ]</label>
+						<visible>!String.IsEmpty(ListItem.AddonOrigin) + ListItem.Property(addon.isinstalled)</visible>
+					</control>
+				</control>
+				
+			</control>
+			
+			
+			<!-- <control type="textbox">
+				<left>150</left>
+				<top>976</top>
+				<width>1280</width>
+				<height>82</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<shadowcolor>black</shadowcolor>
+				<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				<label>[I]$INFO[ListItem.AddonDisclaimer][/I]</label>
+				<textcolor>FFFFFFFF</textcolor>
+				<autoscroll time="9500" delay="6000" repeat="5000">true</autoscroll>
+			</control> -->
+			
+			<include content="KodiQ-InfoDialogTitle-Version-Creator">
+				<param name="main_label" value="$INFO[ListItem.AddonName]" />
+				<param name="sub_label" value="$INFO[ListItem.AddonVersion,[COLOR grey],[/COLOR]]$INFO[ListItem.AddonCreator, $LOCALIZE[31071] ]" />
+			</include>
+			
+		</control>
+		<include condition="Skin.HasSetting(touchmode)">TouchBackButton</include>
+	</controls>
+</window>

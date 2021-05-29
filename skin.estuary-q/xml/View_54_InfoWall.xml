@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	
+<!-- ==================================Original snippit========================================================= -->
+	<include name="View_54_InfoWall">
+	    <include>KodiQ-VideosInfoBar</include>
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<left>-62</left>
+			<top>0</top>
+			<visible>Control.IsVisible(54)</visible>
+			<include>Visible_Right</include>
+			
+			<control type="panel" id="54">
+				<left>460</left>
+				<bottom>0</bottom>
+				<right>15</right>
+				<height>64%</height>
+				<!-- <onleft>9000</onleft> -->
+				<!-- <onright>531</onright> -->
+				<onup condition="Integer.IsGreater(Container.NumPages,1)">54</onup>
+				<onup condition="!Integer.IsGreater(Container.NumPages,1)">9000</onup>
+				<ondown>54</ondown>
+				<!-- <viewtype label="31101">icon</viewtype> -->
+				<preloaditems>2</preloaditems>
+				<pagecontrol>531</pagecontrol>
+				<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(sets) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(images) | Container.Content(videos) | Container.Content(games)</visible>
+<!-- =====================This is the movie layout================== -->
+				<itemlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+					<control type="group">
+						<left>68</left>
+						<top>10</top>
+						<include content="QInfoWallMovieLayout"> 
+							<param name="focused" value="false" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="348" width="266" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)">
+				    
+					<control type="group" id="-8">
+					    
+					    <!-- <depth>DepthContentPopout</depth> -->
+						<control type="image" id="21">
+					        <posx>128</posx>
+		                    <posy>10</posy>
+					        <width>248</width>
+					        <height>330</height>
+                            <aspectratio>auto</aspectratio>					
+					        <texture background="true" fallback="DefaultVideo.png" colordiffuse="66FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBoxZoomed_1.png</texture>
+					        <bordertexture border="0" colordiffuse="overlays/shadow.png">special://skin/extras/PVR_Q/CinemaWidget/Alpha_Border.png</bordertexture>
+                            <bordersize>-0</bordersize>
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="124,121.2" time="200" tween="sine" easing="inout" center="auto" />
+						    </animation>
+						    <animation type="Unfocus">
+							    <effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						    </animation>
+				        </control>
+					</control>
+<!--=========================================Image when foucused===============================================-->
+					<control type="group" id="3030">
+					    <depth>DepthContentPopout</depth>						
+						<control type="image" id="3031">
+					        <posx>128</posx>
+		                    <posy>10</posy>
+					        <width>248</width>
+					        <height>330</height>
+                            <aspectratio>auto</aspectratio>					
+					        <texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Art(poster)]</texture>
+                            <bordersize>5</bordersize>
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="112" time="200" tween="sine" easing="inout" center="252,170" />
+						    </animation>
+						    <animation type="Unfocus">
+							    <effect type="zoom" start="112" end="100" time="200" tween="sine" easing="inout" center="auto" />
+						    </animation>
+				        </control>
+					</control>
+<!--=================================Top CinemaBox_GlowLine=======================================-->
+					<control type="group" id="-12">
+                        <!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+					    <!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+						<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+					    <depth>DepthContentPopout</depth>
+						<control type="image" id="-13">						
+					        <posx>156</posx>
+		                    <posy>5</posy>
+					        <width>190</width>
+					        <height>12</height>
+							<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+							
+                            <aspectratio>auto</aspectratio>
+					        <texture background="true" fallback="DefaultVideo.png">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+                            <bordersize>-0</bordersize>						
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+								<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+			                    <effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+						    </animation>
+						    <animation type="Unfocus">							    
+							    <effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+						    </animation>                   
+				        </control>
+			<!--============================-->
+						<control type="image" id="-15">
+					        <posx>156</posx>
+		                    <posy>5</posy>
+					        <width>33</width>
+					        <height>15</height>
+							<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+                            <aspectratio>auto</aspectratio>
+					        <texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+                            <bordersize>-0</bordersize>							
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+								<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+			                    <effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+						    </animation>
+						    <animation type="Unfocus">
+							    <effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+						    </animation>                   
+				        </control>						
+					</control>
+					
+<!--=================================Bottom CinemaBox_GlowLine=======================================-->
+					<control type="group" id="-12">
+                        <!--<visible allowhiddenfocus="true">!ControlGroup(group).HasFocus(3030)</visible>-->
+					    <!--<visible allowhiddenfocus="true">!String.IsEqual(ListItem.Title)</visible>-->						
+						<!--<visible allowhiddenfocus="true">!Control.HasFocus(21)</visible>-->						
+					    <depth>DepthContentPopout</depth>
+						<control type="image" id="-13">						
+					        <posx>156</posx>
+		                    <posy>291</posy>
+					        <width>190</width>
+					        <height>12</height>
+							<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+                            <aspectratio>auto</aspectratio>
+					        <texture background="true" fallback="DefaultVideo.png" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_1.png</texture>
+                            <bordersize>-0</bordersize>						
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="100,139.5" time="100" tween="sine" easing="inout" center="0,100" />								
+								<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+			                    <effect type="slide" start="-30" end="0" time="800" tween="cubic" easing="inout" />								
+						    </animation>
+						    <animation type="Unfocus">							    
+							    <effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+						    </animation>                   
+				        </control>
+			<!--============================-->
+						<control type="image" id="-15">
+					        <posx>156</posx>
+		                    <posy>284</posy>
+					        <width>33</width>
+					        <height>15</height>
+							<visible allowhiddenfocus="true">$PARAM[focused]</visible>
+                            <aspectratio>auto</aspectratio>
+					        <texture background="true" fallback="DefaultVideo.png" colordiffuse="F2FFFFFF" flipy="true" flipx="false">special://skin/extras/PVR_Q/CinemaWidget/CinemaBox_GlowLine_Ball_1.png</texture>
+                            <bordersize>-0</bordersize>							
+							<animation type="Focus" reversible="false">
+							    <effect type="zoom" start="100" end="100,145" time="100" tween="sine" easing="inout" center="0,100" />								
+								<effect type="fade" start="0" end="100" time="600" tween="sine" easing="inout" />
+			                    <effect type="slide" start="-30" end="77" time="800" tween="cubic" easing="inout" />								
+						    </animation>
+						    <animation type="Unfocus">
+							    <effect type="zoom" start="100,139.5" end="100" time="200" tween="sine" easing="inout" center="auto" />
+								<effect type="fade" start="30" end="0" time="0" tween="sine" easing="inout" />								
+						    </animation>                   
+				        </control>						
+					</control>
+					
+				</focusedlayout>
+<!-- =====================This is the episode layout================== -->
+				<itemlayout height="300" width="300" condition="Container.Content(episodes) | Container.Content(videos) | Container.Content(musicvideos)">
+					<control type="group">
+						<left>64</left>
+						<top>110</top>
+						<include content="InfoWallEpisodeLayout">
+							<param name="focused" value="false" />
+							<param name="thumb_label" value="$INFO[ListItem.Label2]" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="300" width="300" condition="Container.Content(episodes) | Container.Content(videos) | Container.Content(musicvideos)">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="220,250">Focus</animation>
+						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="220,250">UnFocus</animation>
+						<left>64</left>
+						<top>110</top>
+						<include content="InfoWallEpisodeLayout">
+							<param name="focused" value="true" />
+							<param name="thumb_label" value="$INFO[ListItem.Label2]" />
+						</include>
+					</control>
+				</focusedlayout>
+<!-- =====================This is the music layout================== -->
+				<itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
+					<control type="group">
+						<top>150</top>
+						<left>40</left>
+						<include>InfoWallMusicLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<animation effect="zoom" start="100" end="115" time="200" tween="sine" easing="inout" center="200,350">Focus</animation>
+						<animation effect="zoom" start="115" end="100" time="200" tween="sine" easing="inout" center="200,350">UnFocus</animation>
+						<top>150</top>
+						<left>40</left>
+						<include content="InfoWallMusicLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+
+<!-- =====================This is the picture layout================== -->				
+				<itemlayout height="400" width="378" condition="Container.Content(images)">
+					<control type="group">
+						<left>0</left>
+						<top>150</top>
+						<include>InfoWallPictureLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="400" width="378" condition="Container.Content(images)">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>0</left>
+						<top>150</top>
+						<animation effect="zoom" start="100" end="110" time="200" tween="sine" easing="inout" center="180,330">Focus</animation>
+						<animation effect="zoom" start="110" end="100" time="200" tween="sine" easing="inout" center="180,330">UnFocus</animation>
+						<include content="InfoWallPictureLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				
+			</control>
+            			
+		</control>		
+	</include>	
+</includes>

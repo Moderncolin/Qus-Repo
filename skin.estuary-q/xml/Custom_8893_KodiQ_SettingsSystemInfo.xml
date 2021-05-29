@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="8893">
+	<defaultcontrol always="true">9701</defaultcontrol>
+	<controls>
+		<include>DefaultBackground</include>
+		
+		<control type="multiimage">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>600</fadetime>
+			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+			<animation effect="fade" time="400">VisibleChange</animation>
+			<imagepath background="true" colordiffuse="bg_overlay">$INFO[Skin.String(HomeFanart.path)]settings$INFO[Skin.String(HomeFanart.ext)]</imagepath>
+			<visible>!Player.HasMedia + !String.IsEmpty(Skin.String(HomeFanart.path))</visible>
+		</control>
+		
+		<!--============================These are the list names and the contents that will fill them=================================-->
+		<control type="group">			
+			<!--=============================This is the contents that will populate the names================================-->
+			<control type="group" id="17001">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),summary)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="summary"/>
+				</include>
+				
+				<include>KodiQ-GroupListSystemStatsLayout</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListSummaryLayout</include>
+                    <visible>!String.IsEqual(Container(id).CurrentItem.Property(id),SS1)</visible>					
+				</control>				
+			</control>
+
+			<control type="group" id="17002">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),network)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="network"/>
+				</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListNetworkLayout</include>
+                    <visible>!String.IsEqual(Container(id).CurrentItem.Property(id),SS2)</visible>					
+				</control>
+			</control>
+	
+			<control type="group" id="17003">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),video)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="video"/>
+				</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListVideoLayout</include>
+                    <visible>!String.IsEqual(Container(id).CurrentItem.Property(id),SS3)</visible>					
+				</control>
+			</control>
+
+			<control type="group" id="17004">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),storage)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="storage"/>
+				</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListStorageLayout</include>
+                    <!-- <visible>!String.IsEqual(Container(id).CurrentItem.Property(id),SS4)</visible> -->					
+				</control>
+			</control>
+
+			<control type="group" id="17005">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),pvrservice)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="pvrservice"/>
+				</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListPVRServiceLayout</include>
+                    <!-- <visible>!String.IsEqual(Container(id).CurrentItem.Property(id),SS4)</visible> -->					
+				</control>	
+			</control>
+
+			<control type="group" id="17006">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),privacypolicy)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="privacypolicy"/>
+				</include>
+				
+				<!-- <control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListPrivacyPolicyLayout</include>					
+				</control> -->
+			
+	
+                <control type="group">
+					<posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ_TvGridMediaFlags</include>
+				</control>
+				
+				<control type="grouplist">
+					<posx>0</posx>
+					<posy>0</posy>
+					
+					<control type="list">
+					    <!-- <visible>String.IsEqual(Container(17006).Container.HasFocus(06))</visible> -->
+						<onclick>some_builtin</onclick>
+
+						<content>plugin://script.extendedinfo?info=extendedinfo&amp;&amp;name=$INFO[VideoPlayer.Title]</content>
+						<!-- <content>plugin://script.extendedinfo?info=extendedinfo&amp;&amp;name=$INFO[VideoPlayer.Title]</content> -->
+					</control>
+					<!-- <content>plugin://script.extendedinfo?info=discography&amp;&amp;artistname=$INFO[VideoPlayer.Title]</content> -->
+				</control>	
+			</control>
+			
+			<control type="group" id="17007">
+			    <visible>String.IsEqual(Container(9701).ListItem.Property(id),hardware)</visible>
+				<include content="Visible_Right_Delayed">
+					<param name="id" value="hardware"/>
+				</include>
+				
+				<control type="group">
+				    <posx>0</posx>
+					<posy>0</posy>
+					<include>KodiQ-VerticalListHardwareLayout</include>					
+				</control>				
+			</control>
+			<!--=============================================================-->
+
+			<!--========================This is the type of list and the names=====================================-->		
+			<control type="group">
+				<control type="fixedlist" id="9701">
+					<include>OpenClose_FadeSlide_Left</include>
+					<!--<include>VisibleFadeEffect</include>-->
+					<!-- <pagecontrol>0</pagecontrol> -->
+					<left>-26</left>
+					<top>430</top>
+					<width>462</width>
+					<height>710</height>
+					<movement>0</movement>
+					<focusposition>0</focusposition>
+					<!-- <onfocus>ClearProperty(listposition,home)</onfocus> -->
+					<!-- <onright>SetFocus($INFO[Container(9701).ListItem.Property(menu_id)])</onright>
+					<onup>up</onup>
+					<ondown>down</ondown>-->
+					<onleft>back</onleft>
+					<!--<scrolltime>0</scrolltime>
+					<scrollspeed>0</scrollspeed> -->
+					
+					<itemlayout height="95">
+						<control type="image">
+							<left>-3</left>
+							<top>1</top>
+							<width>95</width>
+							<height>95</height>
+							<texture colordiffuse="44FFFFFF">$INFO[ListItem.Art(thumb)]</texture>
+						</control>
+						<control type="label">
+							<left>104</left>
+							<top>0</top>
+							<height>95</height>
+							<width>560</width>
+							<aligny>center</aligny>
+							<font>Rounded_Mplus_1C</font>        <!--======To make the main menu text smaller when it is not highlighed Check Fonts.xml======-->
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</itemlayout>
+					<!--===========================================================-->
+					<focusedlayout height="95">
+						<control type="group">
+							<depth>DepthContentPopout</depth>
+							<control type="group">
+								<control type="image">
+									<left>88</left>
+									<width>368</width>
+									<height>70</height>
+									<top>12</top>
+									<colordiffuse></colordiffuse>
+									<texture colordiffuse="59000000">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Black_Background.png</texture>
+									<shadowcolor>black</shadowcolor>
+								</control>							
+								<control type="image">
+									<left>82</left>
+									<width>380</width>
+									<height>82</height>
+									<top>6</top>
+									<texture colordiffuse="33FFFFFF">special://skin/extras/PVR_Q/KodiQ-Program_MenuSelect_Border.png</texture>
+									<shadowcolor>black</shadowcolor>
+								</control>
+								<include>KodiQ-HomeMenu_SlidingGlow</include>
+							</control>
+							<control type="label">
+								<left>104</left>
+								<top>0</top>
+								<height>95</height>
+								<width>560</width>
+								<aligny>center</aligny>
+								<font>Rounded_Mplus_1C_Bold</font>        <!--======To make the main menu text bigger when it is highlighed Check Fonts.xml======-->
+								<label>$INFO[ListItem.Label]</label>
+								<shadowcolor>text_shadow</shadowcolor>
+							</control>
+						</control>					
+					</focusedlayout>
+					<!--=========================This is the names that the contents will fill=================================-->
+					<!--=========Contents in Settings button===========-->
+					<content>						
+						<item id="01">
+							<label>Summary</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17001]</property>
+							<property name="id">summary</property>
+							<!-- <defaultcontrol always="true">94</defaultcontrol> -->							
+						</item>						
+						<item id="02">
+						    <label>Network</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17002]</property>
+							<property name="id">network</property>
+						</item>
+						<item id="03">
+						    <label>Video</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17003]</property>
+							<property name="id">video</property>
+						</item>
+						<item id="04">
+							<label>Storage</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17004]</property>
+							<property name="id">storage</property>							
+						</item>
+						<item id="05">
+							<label>PVR Service</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17005]</property>
+							<property name="id">pvrservice</property>
+						</item>
+						<item id="06">
+							<label>Privacy Policy</label>
+							<onclick>ActivateWindow(noop)</onclick>
+							<content></content>
+                            <property name="menu_id">$NUMBER[17006]</property>
+							<property name="id">privacypolicy</property>
+						</item>				        
+						<item id="07">
+							<label>Hardware</label>
+							<onclick>ActivateWindow(noop)</onclick>
+                            <property name="menu_id">$NUMBER[17007]</property>
+							<property name="id">hardware</property>
+						</item>						
+					</content>					
+				</control>    
+			</control>			
+        </control>
+
+		<include content="TopBar">
+			<param name="breadcrumbs_label" value="$LOCALIZE[130]" />
+		</include>
+		<include>BottomBar</include>
+
+	</controls>
+</window>
